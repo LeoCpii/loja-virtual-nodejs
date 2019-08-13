@@ -7,7 +7,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('', controller.health); 
-app.use('/authenticate', controller.authenticate);
 app.use('/cliente', controller.cliente);
 app.use('/loja', controller.loja);
 app.use('/categoria', controller.categoria);
