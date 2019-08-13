@@ -1,0 +1,18 @@
+{
+  "name": "loja-virtual-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./bin/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonwebtoken": "^7.4.0",
+    "mongoose": "^5.6.1",
+    "nodemon": "^1.19.1"
+  }
+}

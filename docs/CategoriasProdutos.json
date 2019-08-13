@@ -1,0 +1,100 @@
+{
+    "loja": {
+        "categorias":[
+            {
+                "nome": "Cozinha",
+                "descricao": "Decorações para sua cozinha",
+                "cor": "#1ABC9C",
+                "produtos": [
+                    {
+                        "nome":"Pano de prato",
+                        "descricao": "Pano de prato personalizado",
+                        "valor": 19.90,
+                        "quantidade": 4,
+                        "status": 1,
+                        "fotos": [
+                            "https://img.elo7.com.br/product/zoom/199324D/pano-prato-toalha-mao.jpg",
+                            "https://img.elo7.com.br/product/zoom/90F572/pano-de-prato-promocao-dia-das-maes-pano-prato-decorado.jpg"
+                        ],
+                        "detalhes": [
+                            {
+                                "nome":"Estampa",
+                                "valores": [
+                                    {
+                                        "valor": "Morango"
+                                    },
+                                    {
+                                        "valor": "Galinha"
+                                    },
+                                    {
+                                        "valor": "Flores"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "nome":"Tapete de cozinha",
+                        "descricao": "Tapetes de cozinha",
+                        "valor": 19.90,
+                        "quantidade": 4,
+                        "status": 1,
+                        "fotos": [
+                            "https://a-static.mlcdn.com.br/618x463/kit-tapete-cozinha-3-pecas-sisal-facil-de-lavar-rayza-tapetes/guarucasa/565/493e50796ff2b771a0b2aecd56cca4b4.jpg"
+                        ],
+                        "detalhes": [
+                            {
+                                "nome":"Estampa",
+                                "valores": [
+                                    {
+                                        "valor": "Morango"
+                                    },
+                                    {
+                                        "valor": "Galinha"
+                                    },
+                                    {
+                                        "valor": "Flores"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "nome": "Pintura",
+                "descricao": "Artigos pintados a mão",
+                "cor": "#E4405F",
+                "produtos": [
+                    {
+                        "nome":"Pano de prato",
+                        "descricao": "Pano de prato personalizado",
+                        "valor": 19.90,
+                        "quantidade": 4,
+                        "status": 1,
+                        "fotos": [
+                            "https://img.elo7.com.br/product/zoom/199324D/pano-prato-toalha-mao.jpg",
+                            "https://img.elo7.com.br/product/zoom/90F572/pano-de-prato-promocao-dia-das-maes-pano-prato-decorado.jpg"
+                        ],
+                        "detalhes": [
+                            {
+                                "nome":"Estampa",
+                                "valores": [
+                                    {
+                                        "valor": "Morango"
+                                    },
+                                    {
+                                        "valor": "Galinha"
+                                    },
+                                    {
+                                        "valor": "Flores"
+                                    }
+                                ]
+                            }
+                        ] 
+                    }
+                ]
+            }
+        ]
+    }
+}
