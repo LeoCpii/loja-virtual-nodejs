@@ -6,9 +6,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('',  async (req, res, next) => {
-    res.status(mensagem.status).send('Aplicação saudável');
-});
+app.use('', controller.health); 
 app.use('/authenticate', controller.authenticate);
 app.use('/cliente', controller.cliente);
 app.use('/loja', controller.loja);

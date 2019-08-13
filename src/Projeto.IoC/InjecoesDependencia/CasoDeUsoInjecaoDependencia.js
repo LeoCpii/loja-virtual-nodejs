@@ -2,6 +2,9 @@ const CasoDeUso = {
     auth: {
         autenticar: require('./../../Projeto.CasoDeUso/Authenticate/AuthenticateCasoDeUso'),
     },
+    health: {
+        verificarSaude: require('./../../Projeto.CasoDeUso/Health/VerificarSaudeCasoDeUso'),
+    },
     cliente: {
         criar: require('./../../Projeto.CasoDeUso/Clientes/CriarClienteCasoDeUso'),
     },
