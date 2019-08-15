@@ -1,5 +1,4 @@
-const Repositorio = require('../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
-const Handler = require('../../shared/services/handler.service');
+const Repositorio = require('./../../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
 
 exports.executar = async (email) => {
     try {
@@ -7,7 +6,7 @@ exports.executar = async (email) => {
         const informacaoPessoal = await Repositorio.informacoesPessoais.Dominio.InformacaoPessoal.findOne({
             email: email
         });
-        
+
         if (!informacaoPessoal) {
             throw {
                 status: 404,
@@ -15,18 +14,18 @@ exports.executar = async (email) => {
             }
         }
 
-        const cliente = await Repositorio.clientes.Dominio.Cliente.findOne({
+        const representanteLegal = await Repositorio.representantesLegais.Dominio.RepresentanteLegal.findOne({
             informacaoPessoal: informacaoPessoal._id
         }).populate(['informacaoPessoal', 'endereco']);
 
-        if(Repositorio.extensoes.EhNuloOuVazio(cliente)) {
+        if(Repositorio.extensoes.EhNuloOuVazio(representanteLegal)) {
             throw {
                 status: 404,
                 message: 'Email não registrado'
             }
         }
 
-        return cliente;
+        return representanteLegal;
     } catch (error) {
         return error;
     }

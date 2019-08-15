@@ -19,7 +19,6 @@ exports.executar = async (req, res, next) => {
         };
 
         const senhaIgual = senha && senha === cliente.informacaoPessoal.senha ? true : false;
-
         if (!cliente || !senhaIgual) {
             throw {
                 status: 404,

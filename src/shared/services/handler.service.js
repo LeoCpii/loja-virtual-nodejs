@@ -92,3 +92,4 @@ exports.errorStatus = (response) => {
           return this.internalException(response);
      }
 }
+

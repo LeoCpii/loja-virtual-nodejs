@@ -12,6 +12,8 @@ exports.executar = async (req, res, next) => {
            throw loja;
         };
         
+
+        
         const mensagem = Handler.success('Loja cadastrada com sucesso', loja);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {

@@ -3,5 +3,5 @@ const Fabrica = require('../../Projeto.Dominio/Clientes/ClienteFabrica');
 
 module.exports = {
     Dominio,
-    Fabrica
+    Fabrica,
 }

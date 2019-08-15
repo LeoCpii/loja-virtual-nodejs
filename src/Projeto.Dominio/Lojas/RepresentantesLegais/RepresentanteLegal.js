@@ -14,6 +14,10 @@ const RepresentanteLegalSchema = new mongoose.Schema({
         ref: 'Endereco',
         required: [true, 'Endereço é obrigatório'],
     },
+    loja:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Loja'
+    },
 });
 
 const RepresentanteLegal = mongoose.model('RepresentanteLegal', RepresentanteLegalSchema);

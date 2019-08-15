@@ -9,6 +9,9 @@ const CasoDeUso = {
     loja: {
         criar: require('./../../Projeto.CasoDeUso/Lojas/CriarLojaCasoDeUso'),
         obter: require('./../../Projeto.CasoDeUso/Lojas/ObterLojaCasoDeUso'),
+        representanteLegal: {
+            auth: require('./../../Projeto.CasoDeUso/Lojas/RepresentantesLegais/AutenticarRepresentanteLegalCasoDeUso'),
+        },
         categoria: {
             criar: require('./../../Projeto.CasoDeUso/Lojas/Categorias/CriarCategoriaCasoDeUso'),
             obter: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ObterCategoriasCasoDeUso'),

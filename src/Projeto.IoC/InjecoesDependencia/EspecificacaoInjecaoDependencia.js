@@ -6,6 +6,9 @@ const especificacao = {
     lojas: {
         criar: require('./../../Projeto.Especificacao/Lojas/CriarLojaEspecificacao'),
         obter: require('./../../Projeto.Especificacao/Lojas/ObterLojaEspecificacao'),
+        representanteLegal: {
+            obterPorEmail: require('./../../Projeto.Especificacao/Lojas/RepresentantesLegais/ObterRepresentanteLegalPorEmailEspecificacao'),
+        },
         categorias: {
             criar: require('./../../Projeto.Especificacao/Lojas/Categorias/CriarCategoriaEspecificacao'),
             obter: require('./../../Projeto.Especificacao/Lojas/Categorias/ObterCategoriasEspecificacao'),
