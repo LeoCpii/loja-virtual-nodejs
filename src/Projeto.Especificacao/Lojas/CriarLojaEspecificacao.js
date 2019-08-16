@@ -22,10 +22,10 @@ exports.executar = async (loja) => {
             throw representanteLegalInformacaoPessoal;
         }
 
-        const lojaRepresentanteLegal = await Repositorio.representantesLegais.Fabrica.criar(representanteLegalEndereco, representanteLegalInformacaoPessoal);
+        const representanteLegal = await Repositorio.representantesLegais.Fabrica.criar(representanteLegalEndereco, representanteLegalInformacaoPessoal);
 
-        if (!Handler.isSuccess(lojaRepresentanteLegal)) {
-            throw lojaRepresentanteLegal;
+        if (!Handler.isSuccess(representanteLegal)) {
+            throw representanteLegal;
         }
 
         const lojaEndereco = await Repositorio.enderecos.Fabrica.criar(loja.endereco);
@@ -34,11 +34,17 @@ exports.executar = async (loja) => {
             throw lojaEndereco;
         }
 
-        const newLoja = await Repositorio.lojas.Fabrica.criar(lojaAtt, lojaEndereco, lojaRepresentanteLegal);
+        const newLoja = await Repositorio.lojas.Fabrica.criar(lojaAtt, lojaEndereco, representanteLegal);
 
         if (!Handler.isSuccess(newLoja)) {
             throw newLoja;
         }
+
+        const params = {
+            loja: newLoja
+        }
+
+        await Repositorio.representantesLegais.Fabrica.atualizar(representanteLegal._id, params);
 
         return newLoja;
     } catch (error) {

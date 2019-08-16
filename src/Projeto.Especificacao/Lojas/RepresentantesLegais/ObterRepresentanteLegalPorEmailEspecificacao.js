@@ -16,7 +16,7 @@ exports.executar = async (email) => {
 
         const representanteLegal = await Repositorio.representantesLegais.Dominio.RepresentanteLegal.findOne({
             informacaoPessoal: informacaoPessoal._id
-        }).populate(['informacaoPessoal', 'endereco']);
+        }).populate(['informacaoPessoal', 'endereco', 'loja']);
 
         if(Repositorio.extensoes.EhNuloOuVazio(representanteLegal)) {
             throw {

@@ -27,12 +27,10 @@ const validar = (representanteLegal) => {
     }
 }
 
-exports.atualizar = async (representanteLegal) => {
+exports.atualizar = async (id, representanteLegal) => {
 
-    const idLoja = await Dominio.RepresentanteLegal.findOne();
-
-    const attLoja = await Dominio.RepresentanteLegal.updateOne(
-        { _id: idLoja._id },
+    const attRepresentate = await Dominio.RepresentanteLegal.updateOne(
+        { _id: id },
         { $set: representanteLegal },
         { upsert: true }
     ).then().catch(e => {
@@ -41,6 +39,6 @@ exports.atualizar = async (representanteLegal) => {
             message: errorHandling.concatErrors(e.errors)
         }
     });
-
-    return attLoja;
+    console.log(attRepresentate)
+    return attRepresentate;
 }

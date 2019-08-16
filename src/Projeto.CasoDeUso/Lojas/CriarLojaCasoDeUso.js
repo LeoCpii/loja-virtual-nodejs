@@ -12,9 +12,7 @@ exports.executar = async (req, res, next) => {
            throw loja;
         };
         
-
-        
-        const mensagem = Handler.success('Loja cadastrada com sucesso', loja);
+        const mensagem = Handler.success('Loja cadastrada com sucesso');
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
         const mensagem = Handler.errorStatus(error);

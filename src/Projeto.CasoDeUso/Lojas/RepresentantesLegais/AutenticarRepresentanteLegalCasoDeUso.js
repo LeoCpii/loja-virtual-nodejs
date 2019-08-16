@@ -26,11 +26,12 @@ exports.executar = async (req, res, next) => {
                 message: 'Email ou senha inválidos'
             }
         }
-
+        
         const token = await auth.generateToken({
             unique: representante._id,
             email: representante.informacaoPessoal.email,
-            nome: representante.informacaoPessoal.nome
+            nome: representante.informacaoPessoal.nome,
+            loja: representante.loja._id,
         })
 
         const mensagem = Handler.success('Usuário logado', token);
