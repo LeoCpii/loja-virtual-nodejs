@@ -6,7 +6,6 @@ exports.executar = async (email) => {
         const informacaoPessoal = await Repositorio.informacoesPessoais.Dominio.InformacaoPessoal.findOne({
             email: email
         });
-
         if (!informacaoPessoal) {
             throw {
                 status: 404,

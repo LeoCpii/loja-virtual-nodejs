@@ -10,12 +10,12 @@ exports.validar = (informacaoPessoal) => {
         cpf,
         email,
         sexo,
-        DataNascimento
+        dataNascimento
     } = informacaoPessoal
     
     validaEmail(email);
     validaEnum(sexo, Enum.SEXO);
-    validaData(DataNascimento);
+    validaData(dataNascimento);
     validaCPF(cpf);
 
     return arrError;

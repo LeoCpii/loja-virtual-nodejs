@@ -21,7 +21,7 @@ const InformacaoPessoalSchema = new mongoose.Schema({
     foto: {
         type: String,
     },
-    DataNascimento: {
+    dataNascimento: {
         type: String,
         required: [true, 'Data de nascimento é obrigatória'],
     },

@@ -4,7 +4,7 @@ const Handler = require('./../../shared/services/handler.service');
 exports.executar = async () => {
     try {
 
-        const loja = await Repositorio.lojas.Dominio.Loja.find().populate(
+        const loja = await Repositorio.lojas.Dominio.Loja.findOne().populate(
             ['endereco', 'representanteLegal', 'categorias',
                 {
                     path: 'representanteLegal', populate: {

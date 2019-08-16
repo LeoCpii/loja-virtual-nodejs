@@ -6,7 +6,7 @@ const Dominio = require('./InformacaoPessoal');
 exports.criar = async (informacaoPessoal) => {
 
     const {
-        nome, sobrenome, foto, DataNascimento, cpf, sexo, email, senha
+        nome, sobrenome, foto, dataNascimento, cpf, sexo, email, senha
     } = informacaoPessoal;
 
     const ehValido = validar(informacaoPessoal);
@@ -16,7 +16,7 @@ exports.criar = async (informacaoPessoal) => {
     }
 
     const newCliente = await Dominio.InformacaoPessoal.create({
-        nome, sobrenome, foto, DataNascimento, cpf, sexo, email, senha
+        nome, sobrenome, foto, dataNascimento, cpf, sexo, email, senha
     }).then().catch(e => {
         throw {
             status: 400,
