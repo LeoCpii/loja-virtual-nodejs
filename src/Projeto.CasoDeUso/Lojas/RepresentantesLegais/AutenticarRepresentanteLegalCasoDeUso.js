@@ -13,18 +13,11 @@ exports.executar = async (req, res, next) => {
         } = req.body
         
         const representante = await Especificacao.lojas.representanteLegal.obterPorEmail.executar(email);
-    
-        if (!Handler.isSuccess(representante)) {
-            throw representante;
-        };
 
         const senhaIgual = senha && senha === representante.informacaoPessoal.senha ? true : false;
        
         if (!representante || !senhaIgual) {
-            throw {
-                status: 404,
-                message: 'Email ou senha inválidos'
-            }
+            throw new Handler.HandlerError(404, 'Email ou senha inválidos')
         }
         
         const token = await auth.generateToken({
@@ -36,9 +29,7 @@ exports.executar = async (req, res, next) => {
 
         const mensagem = Handler.success('Usuário logado', token);
         return res.status(mensagem.status).send(mensagem);
-
     } catch (error) {
-        const mensagem = Handler.errorStatus(error);
-        return res.status(mensagem.status).send(mensagem);
+        return res.status(error.status).send(error);
     }
 }

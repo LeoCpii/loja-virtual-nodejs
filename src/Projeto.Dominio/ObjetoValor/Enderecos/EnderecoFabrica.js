@@ -4,19 +4,12 @@ const errorHandling = require('./../../../shared/services/ErrorHandling.service'
 const Dominio = require('./Endereco');
 
 exports.criar = async (endereco) => {
-    const ehValido = validar(endereco);
-
-    if (!Handler.isSuccess(ehValido)) {
-        throw ehValido;
-    }
+    validar(endereco);
 
     const newEndereco = await Dominio.Endereco.create(
         endereco
     ).then().catch(e => {
-        throw {
-            status: 400,
-            message: errorHandling.concatErrors(e.errors)
-        }
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
     await newEndereco.save();
@@ -27,8 +20,9 @@ exports.criar = async (endereco) => {
 const validar = (endereco) => {
     const validado = RegraDeNegocio.validar(endereco);
 
-    return validado.length === 0 ? true : {
-        status: 400,
-        message: validado,
+    if (validado.length === 0) {
+        return;
     }
+
+    throw new Handler.HandlerError(400, validado);
 }

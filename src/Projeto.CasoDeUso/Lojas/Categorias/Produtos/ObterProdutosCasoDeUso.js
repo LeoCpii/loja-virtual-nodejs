@@ -7,15 +7,10 @@ const Especificacao = require('../../../../Projeto.IoC/InjecoesDependencia/Espec
 exports.executar = async (req, res, next) => {
     try {
         const produtos = await Especificacao.lojas.categorias.produtos.obter.executar();
-        
-        if (!Handler.isSuccess(produtos)) {
-           throw produtos;
-        };
-        
+                
         const mensagem = Handler.success('Produtos obtidos com sucesso', produtos);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
-        const mensagem = Handler.errorStatus(error);
-        return res.status(mensagem.status).send(mensagem);
+        return res.status(error.status).send(error);
     }
 }

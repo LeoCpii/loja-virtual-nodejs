@@ -14,16 +14,9 @@ exports.executar = async (req, res, next) => {
         
         const cliente = await Especificacao.clientes.obterPorEmail.executar(email);
 
-        if (!Handler.isSuccess(cliente)) {
-            throw cliente;
-        };
-
         const senhaIgual = senha && senha === cliente.informacaoPessoal.senha ? true : false;
         if (!cliente || !senhaIgual) {
-            throw {
-                status: 404,
-                message: 'Email ou senha inválidos'
-            }
+            throw new Handler.HandlerError(404, 'Email ou senha inválidos')
         }
 
         const token = await auth.generateToken({
@@ -36,7 +29,6 @@ exports.executar = async (req, res, next) => {
         return res.status(mensagem.status).send(mensagem);
 
     } catch (error) {
-        const mensagem = Handler.errorStatus(error);
-        return res.status(mensagem.status).send(mensagem);
+        return res.status(error.status).send(error);
     }
 }

@@ -2,13 +2,13 @@
 * Imports Dependencies
 */
 const Handler = require('./../../../shared/services/handler.service');
-const Especificacao = require('./../../../Projeto.IoC/InjecoesDependencia/EspecificacaoInjecaoDependencia');
+const ServicoExterno = require('./../../../Projeto.ServicoExterno/ObterEndereco/ObterEnderecoServicoExterno');
 
 exports.executar = async (req, res, next) => {
     try {
-        const categoria = await Especificacao.lojas.categorias.criar.executar(req.body);
-        
-        const mensagem = Handler.success('Categoria cadastrada com sucesso', categoria);
+        const endereco = await ServicoExterno.obterEndereco(req.params.CEP);
+
+        const mensagem = Handler.success('Endereco obtido com sucesso', endereco.data);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
         return res.status(error.status).send(error);

@@ -1,4 +1,32 @@
 
+exports.HandlerError =
+     class HandlerError {
+          constructor(status, message) {
+               this.status = status;
+               this.message = message;
+          }
+
+          get error() {
+               return this.calculaArea();
+          }
+
+          statusError() {
+               if (this.status) {
+                    if (this.status === 422) {
+                         return businessRuleException(response.message);
+                    } else if (this.status === 401) {
+                         return notAuthException(response.message);
+                    } else if (this.status === 404) {
+                         return notFoundException(response.message);
+                    } else if (this.status === 400) {
+                         return badRequest(response.message);
+                    }
+               } else {
+                    return internalException(response);
+               }
+          }
+     }
+
 exports.success = (message, data = '') => {
      const body = {
           status: 200,
@@ -60,6 +88,7 @@ exports.internalException = (err) => {
 }
 
 exports.isSuccess = (response) => {
+
      if (!response) {
           return true;
      };
@@ -67,6 +96,7 @@ exports.isSuccess = (response) => {
      const statusDeErro = [400, 401, 404, 422, 500];
      let existeStatusErro = false;
      let existeMensagem = false;
+
 
      existeMensagem = response.message ? true : false;
 
@@ -92,4 +122,3 @@ exports.errorStatus = (response) => {
           return this.internalException(response);
      }
 }
-

@@ -9,11 +9,7 @@ exports.criar = async (loja, endereco, representanteLegal) => {
         razaoSocial, cnpj, foto
     } = loja
 
-    const ehValido = validar(loja);
-
-    if (!Handler.isSuccess(ehValido)) {
-        throw ehValido;
-    }
+    validar(loja);
 
     const newLoja = await Dominio.Loja.create(
         {
@@ -22,10 +18,8 @@ exports.criar = async (loja, endereco, representanteLegal) => {
             representanteLegal
         }
     ).then().catch(e => {
-        throw {
-            status: 400,
-            message: errorHandling.concatErrors(e.errors)
-        }
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors)
+        );
     });
 
     await newLoja.save();
@@ -41,10 +35,7 @@ exports.atualizarArray = async (loja) => {
         { $addToSet: loja },
         { upsert: true }
     ).then().catch(e => {
-        throw {
-            status: 400,
-            message: errorHandling.concatErrors(e.errors)
-        }
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
     return attLoja;
@@ -59,10 +50,7 @@ exports.atualizar = async (loja) => {
         { $set: loja },
         { upsert: true }
     ).then().catch(e => {
-        throw {
-            status: 400,
-            message: errorHandling.concatErrors(e.errors)
-        }
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
     return attLoja;
@@ -71,8 +59,9 @@ exports.atualizar = async (loja) => {
 const validar = (loja) => {
     const validado = RegraDeNegocio.validar(loja);
 
-    return validado.length === 0 ? true : {
-        status: 400,
-        message: validado,
+    if (validado.length === 0) {
+        return;
     }
+
+    throw new Handler.HandlerError(400, validado);
 }

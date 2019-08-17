@@ -9,19 +9,12 @@ exports.criar = async (informacaoPessoal) => {
         nome, sobrenome, foto, dataNascimento, cpf, sexo, email, senha
     } = informacaoPessoal;
 
-    const ehValido = validar(informacaoPessoal);
-
-    if (!Handler.isSuccess(ehValido)) {
-        throw ehValido;
-    }
+    validar(informacaoPessoal);
 
     const newCliente = await Dominio.InformacaoPessoal.create({
         nome, sobrenome, foto, dataNascimento, cpf, sexo, email, senha
     }).then().catch(e => {
-        throw {
-            status: 400,
-            message: errorHandling.concatErrors(e.errors)
-        }
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
     await newCliente.save();
@@ -32,8 +25,9 @@ exports.criar = async (informacaoPessoal) => {
 const validar = (informacaoPessoal) => {
     const validado = RegraDeNegocio.validar(informacaoPessoal);
 
-    return validado.length === 0 ? true : {
-        status: 400,
-        message: validado,
+    if (validado.length === 0) {
+        return;
     }
+
+    throw new Handler.HandlerError(400, validado);
 }

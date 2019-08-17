@@ -8,6 +8,6 @@ exports.executar = async (req) => {
 
         return produtos;
     } catch (error) {
-        return error;
+        throw error;
     }
 }

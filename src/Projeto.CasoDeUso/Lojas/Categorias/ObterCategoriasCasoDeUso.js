@@ -8,14 +8,9 @@ exports.executar = async (req, res, next) => {
     try {
         const categorias = await Especificacao.lojas.categorias.obter.executar();
         
-        if (!Handler.isSuccess(categorias)) {
-           throw categorias;
-        };
-        
         const mensagem = Handler.success('Categorias encontradas', categorias);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
-        const mensagem = Handler.errorStatus(error);
-        return res.status(mensagem.status).send(mensagem);
+        return res.status(error.status).send(error);
     }
 }

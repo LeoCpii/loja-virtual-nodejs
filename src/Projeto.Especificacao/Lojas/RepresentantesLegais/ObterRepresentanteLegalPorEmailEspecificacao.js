@@ -8,10 +8,7 @@ exports.executar = async (email) => {
             email: email
         });
         if (!informacaoPessoal) {
-            throw {
-                status: 404,
-                message: 'Email não registrado'
-            }
+            throw new Handler.HandlerError(404, 'Email não registrado')
         }
 
         const representanteLegal = await Repositorio.representantesLegais.Dominio.RepresentanteLegal.findOne({
@@ -19,14 +16,11 @@ exports.executar = async (email) => {
         }).populate(['informacaoPessoal', 'endereco', 'loja']);
 
         if(Extension.EhNuloOuVazio(representanteLegal)) {
-            throw {
-                status: 404,
-                message: 'Email não registrado'
-            }
+            throw new Handler.HandlerError(404, 'Email não registrado')
         }
 
         return representanteLegal;
     } catch (error) {
-        return error;
+        throw error;
     }
 }

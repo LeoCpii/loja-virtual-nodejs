@@ -6,10 +6,6 @@ exports.executar = async (req) => {
 
         const newProduto = await Repositorio.produtos.Fabrica.criar(req.produto);
 
-        if (!Handler.isSuccess(newProduto)) {
-            throw newProduto;
-        }
-
         const options = {
             id: req.categoria,
             add: {
@@ -17,14 +13,10 @@ exports.executar = async (req) => {
             }
         }
 
-        const categoriaAtt = await Repositorio.categorias.Fabrica.atualizarArray(options);
-
-        if (!Handler.isSuccess(categoriaAtt)) {
-            throw categoriaAtt;
-        }
+        await Repositorio.categorias.Fabrica.atualizarArray(options);
 
         return newProduto;
     } catch (error) {
-        return error;
+        throw error;
     }
 }

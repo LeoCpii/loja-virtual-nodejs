@@ -8,6 +8,6 @@ exports.executar = async () => {
 
         return categorias;
     } catch (error) {
-        return error;
+        throw error;
     }
 }

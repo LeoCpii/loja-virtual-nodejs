@@ -29,6 +29,6 @@ exports.executar = async () => {
 
         return loja;
     } catch (error) {
-        return error;
+        throw error;
     }
 }

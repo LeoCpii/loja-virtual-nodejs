@@ -6,22 +6,12 @@ exports.executar = async (categoria) => {
 
         const newCategoria = await Repositorio.categorias.Fabrica.criar(categoria);
 
-        if (!Handler.isSuccess(newCategoria)) {
-            throw newCategoria;
-        }
-
-        const options = {
-            categorias: [ newCategoria ]
-        }
+        const options = { categorias: [ newCategoria ] }
         
-        const lojaAtt = await Repositorio.lojas.Fabrica.atualizarArray(options);
-        
-        if (!Handler.isSuccess(lojaAtt)) {
-            throw lojaAtt;
-        }
+        await Repositorio.lojas.Fabrica.atualizarArray(options);
 
         return newCategoria;
     } catch (error) {
-        return error;
+        throw error;
     }
 }

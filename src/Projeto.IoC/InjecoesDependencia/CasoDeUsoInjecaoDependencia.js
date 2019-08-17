@@ -22,6 +22,11 @@ const CasoDeUso = {
                 obterPorId: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterPorIdProdutosCasoDeUso')
             }
         }
+    },
+    objetoValor: {
+        endereco: {
+            obterPorCEP: require('./../../Projeto.CasoDeUso/ObjetoValor/Enderecos/EnderecoCasoDeUso')
+        }
     }
 };
 
