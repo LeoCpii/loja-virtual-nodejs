@@ -1,4 +1,5 @@
 const Repositorio = require('./../../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
+const Extension = require('./../../../shared/services/Extension.service');
 
 exports.executar = async (email) => {
     try {
@@ -17,7 +18,7 @@ exports.executar = async (email) => {
             informacaoPessoal: informacaoPessoal._id
         }).populate(['informacaoPessoal', 'endereco', 'loja']);
 
-        if(Repositorio.extensoes.EhNuloOuVazio(representanteLegal)) {
+        if(Extension.EhNuloOuVazio(representanteLegal)) {
             throw {
                 status: 404,
                 message: 'Email não registrado'

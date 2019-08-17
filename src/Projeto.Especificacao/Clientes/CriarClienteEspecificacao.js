@@ -1,12 +1,13 @@
 const Repositorio = require('../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
 const Handler = require('./../../shared/services/handler.service');
+const Extension = require('./../../shared/services/Extension.service');
 
 exports.executar = async (cliente) => {
     try {
 
         const jaExiste = await Repositorio.informacoesPessoais.Dominio.InformacaoPessoal.findOne({ email: cliente.informacaoPessoal.email });
 
-        if (!Repositorio.extensoes.EhNuloOuVazio(jaExiste)) {
+        if (!Extension.EhNuloOuVazio(jaExiste)) {
             throw {
                 status: 422,
                 message: 'Email já cadastrado'

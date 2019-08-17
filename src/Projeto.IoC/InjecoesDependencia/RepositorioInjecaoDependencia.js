@@ -1,5 +1,4 @@
 const repositorio = {
-    extensao: require('../../Projeto.Dominio/Comum/Extensao'),
     clientes: require('./../../Projeto.Repositorio/Clientes/ClienteRepositorio'),
     enderecos: require('../../Projeto.Repositorio/ObjetoValor/Enderecos/EnderecoRepositorio'),
     informacoesPessoais: require('../../Projeto.Repositorio/ObjetoValor/InformacoesPessoais/InformacoesPessoaisRepositorio'),

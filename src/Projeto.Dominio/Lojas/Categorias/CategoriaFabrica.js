@@ -3,7 +3,7 @@ const Handler = require('../../../shared/services/handler.service');
 const errorHandling = require('../../../shared/services/ErrorHandling.service');
 const Dominio = require('./Categoria');
 const Extensao = require('./../../Comum/Extensao');
-
+const Extension = require('./../../../shared/services/Extension.service');
 exports.criar = async (categoria) => {
 
     const {
@@ -34,7 +34,7 @@ exports.atualizarArray = async (options) => {
    
     const categoria = await Dominio.Categoria.findOne({ _id: options.id });
 
-    if(Extensao.EhNuloOuVazio(categoria)){
+    if(Extension.EhNuloOuVazio(categoria)){
         throw {
             status: 400,
             message: 'Categoria não encontrada'
