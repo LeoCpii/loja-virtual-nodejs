@@ -1,4 +1,5 @@
 const controller = {
+    auth: require('./../../Projeto.Controller/Auth/AuthController'),
     cliente: require('./../../Projeto.Controller/Clientes/ClienteController'),
     categoria: require('./../../Projeto.Controller/Lojas/Categorias/CategoriasController'),
     health: require('./../../Projeto.Controller/Health/HealthController'),

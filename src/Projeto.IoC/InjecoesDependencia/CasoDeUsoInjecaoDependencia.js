@@ -1,4 +1,7 @@
 const CasoDeUso = {
+    auth: {
+        autenticar: require('./../../Projeto.CasoDeUso/Auth/AutenticarClienteCasoDeUso'),
+    },
     health: {
         verificarSaude: require('./../../Projeto.CasoDeUso/Health/VerificarSaudeCasoDeUso'),
     },
