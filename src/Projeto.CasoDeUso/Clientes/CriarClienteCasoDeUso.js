@@ -12,6 +12,7 @@ exports.executar = async (req, res, next) => {
         const mensagem = Handler.success('Cliente cadastrado com sucesso', cliente);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
-        return res.status(error.status).send(error);
+        const mensagem = Handler.errorStatus(error)
+        return res.status(mensagem.status).send(mensagem);
     }
 }

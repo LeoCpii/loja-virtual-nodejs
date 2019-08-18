@@ -29,7 +29,7 @@ exports.atualizarArray = async (options) => {
     const categoria = await Dominio.Categoria.findOne({ _id: options.id });
 
     if(Extension.EhNuloOuVazio(categoria)){
-        throw new Handler.HandlerError( 400, 'Categoria não encontrada');
+        throw new Handler.HandlerError(400, 'Categoria não encontrada');
     }
 
     const attCategoria = await Dominio.Categoria.updateOne(

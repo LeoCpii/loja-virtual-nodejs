@@ -5,26 +5,6 @@ exports.HandlerError =
                this.status = status;
                this.message = message;
           }
-
-          get error() {
-               return this.calculaArea();
-          }
-
-          statusError() {
-               if (this.status) {
-                    if (this.status === 422) {
-                         return businessRuleException(response.message);
-                    } else if (this.status === 401) {
-                         return notAuthException(response.message);
-                    } else if (this.status === 404) {
-                         return notFoundException(response.message);
-                    } else if (this.status === 400) {
-                         return badRequest(response.message);
-                    }
-               } else {
-                    return internalException(response);
-               }
-          }
      }
 
 exports.success = (message, data = '') => {
@@ -51,6 +31,16 @@ exports.notAuthException = (message) => {
      const errBody = {
           status: 401,
           message: 'Usuário não autorizado',
+          description: message
+     }
+
+     return errBody;
+}
+
+exports.forbidden = (message) => {
+     const errBody = {
+          status: 403,
+          message: 'Acesso restrito',
           description: message
      }
 
@@ -108,17 +98,18 @@ exports.isSuccess = (response) => {
 }
 
 exports.errorStatus = (response) => {
-     if (response.status) {
-          if (response.status === 422) {
-               return this.businessRuleException(response.message);
-          } else if (response.status === 401) {
-               return this.notAuthException(response.message);
-          } else if (response.status === 404) {
-               return this.notFoundException(response.message);
-          } else if (response.status === 400) {
+     switch (response.status) {
+          case 400:
                return this.badRequest(response.message);
-          }
-     } else {
-          return this.internalException(response);
+          case 401:
+               return this.notAuthException(response.message);
+          case 403:
+               return this.forbidden(response.message);
+          case 404:
+               return this.notFoundException(response.message);
+          case 422:
+               return this.businessRuleException(response.message);
+          default:
+               return this.internalException(response);
      }
 }

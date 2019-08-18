@@ -16,7 +16,7 @@ exports.autorize = async (req, res, next) => {
 
     if (!token) {
         const error = {
-            status: 401,
+            status: 403,
             message: 'Acesso restrito'
         }
 
