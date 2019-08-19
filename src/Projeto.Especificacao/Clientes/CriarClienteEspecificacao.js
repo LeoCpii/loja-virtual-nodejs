@@ -4,7 +4,7 @@ const Extension = require('./../../shared/services/Extension.service');
 
 exports.executar = async (cliente) => {
     try {
-
+        console.log(cliente)
         const jaExiste = await Repositorio.informacoesPessoais.Dominio.InformacaoPessoal.findOne({ email: cliente.informacaoPessoal.email });
 
         if (!Extension.EhNuloOuVazio(jaExiste)) {
