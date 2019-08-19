@@ -11,5 +11,6 @@ router.post('/register', CasoDeUso.loja.criar.executar);
 /*
 * GET
 */
+router.get('/auth', CasoDeUso.loja.representanteLegal.auth.executar);
 router.get('', auth.autorize, CasoDeUso.loja.obter.executar);
 module.exports = router;
