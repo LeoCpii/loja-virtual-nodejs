@@ -59,6 +59,15 @@ exports.atualizar = async (categoria) => {
     return attCategoria;
 }
 
+exports.excluir = async (categoriaId) => {
+    await Dominio.Categoria.deleteOne({
+         _id: categoriaId
+    }).catch(e => {
+        throw new Handler.HandlerError( 400, errorHandling.concatErrors(e.errors)
+        );
+    });;
+}
+
 const validar = (categoria) => {
     const validado = RegraDeNegocio.validar(categoria);
 
