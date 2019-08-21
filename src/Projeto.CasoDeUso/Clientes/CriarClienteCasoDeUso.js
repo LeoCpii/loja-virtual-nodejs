@@ -6,7 +6,7 @@ const Especificacao = require('./../../Projeto.IoC/InjecoesDependencia/Especific
 
 exports.executar = async (req, res, next) => {
     try {
-   
+        console.log('to testando')
         const cliente = await Especificacao.clientes.criar.executar(req.body)
         
         const mensagem = Handler.success('Cliente cadastrado com sucesso', cliente);

@@ -1,33 +1,25 @@
-const cliente = require('')
-const criarCliente = require('./../../../../Projeto.Especificacao/Clientes/CriarClienteEspecificacao');
-const mock = require('./../../../Projeto.Testes.Builder/Clientes/cliente.builder')
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const mock = require('../../../Projeto.Testes.Builder/Clientes/cliente.builder').cliente;
+const config = require('./../../../appsettings');
+const endpoint = '/cliente';
+const expect = chai.expect;
 
-describe('Criando cliente', () => {
-    let transac;
-    beforeAll(async () => {
-        Customer.createCollection().
-        then(() => Customer.startSession()).
-        then(_session => {
-          session = _session;
-          session.startTransaction();
-          return Customer.create([{ name: 'Test' }], { session: session });
-        }).
-        then(() => Customer.create([{ name: 'Test2' }], { session: session })).
-        then(() => session.abortTransaction()).
-        then(() => Customer.countDocuments()).
-        then(count => assert.strictEqual(count, 0));
-    });
+chai.use(chaiHttp);
+chai.should();
 
-    test('Deve criar um cliente', async () => {
-        const clientMock = mock.cliente;
-        const clienteCriado = await criarCliente.executar(clientMock)
-        console.log(clienteCriado)
-        expect(3).toBe(3);
-    });
-
-    afterAll(async () => {
-        transac.abortTransaction();
-    });
-});
-
-
+// describe('Endpoint - Cliente', () => {
+//     describe('POST /register', () => {
+//         it('Deve retornar erro de CEP inválido - 400', done => {
+//             mock.endereco.cep = '25050230-G';
+//             chai.request(config.url)
+//                 .post(`${endpoint}/register`)
+//                 .send(mock)
+//                 .end((err, res) => {
+//                     expect(res.statusCode).to.equal(400);
+//                     expect(res.body.description[0].error).to.equal('CEP inválido');
+//                     done();
+//                 });
+//         });
+//     });
+// });
