@@ -1,3 +1,4 @@
+const Handler = require('./../../../shared/services/handler.service');
 const Repositorio = require('./../../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
 const Extension = require('./../../../shared/services/Extension.service');
 

@@ -8,7 +8,7 @@ exports.executar = async (req, res, next) => {
     try {
         const categorias = await Especificacao.lojas.categorias.obter.executar();
         
-        const mensagem = Handler.success('Categorias encontradas', categorias);
+        const mensagem = Handler.success('Categorias obtidas com sucesso', categorias);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
         const mensagem = Handler.errorStatus(error)

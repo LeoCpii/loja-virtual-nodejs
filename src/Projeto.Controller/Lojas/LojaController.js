@@ -7,10 +7,10 @@ const auth = require('../../Projeto.API/auth/auth.service');
 * POST
 */
 router.post('/register', CasoDeUso.loja.criar.executar);
+router.post('/auth', CasoDeUso.loja.representanteLegal.auth.executar);
 
 /*
 * GET
 */
-router.get('/auth', CasoDeUso.loja.representanteLegal.auth.executar);
 router.get('', auth.autorize, CasoDeUso.loja.obter.executar);
 module.exports = router;

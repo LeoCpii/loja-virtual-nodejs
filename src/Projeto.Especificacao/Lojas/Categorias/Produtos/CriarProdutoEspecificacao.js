@@ -6,14 +6,16 @@ exports.executar = async (req) => {
 
         const newProduto = await Repositorio.produtos.Fabrica.criar(req.produto);
 
-        const options = {
-            id: req.categoria,
-            add: {
-                produtos: [newProduto]
+        req.categorias.map(async categoria => {
+            const options = {
+                id: categoria,
+                add: {
+                    produtos: [newProduto]
+                }
             }
-        }
 
-        await Repositorio.categorias.Fabrica.atualizarArray(options);
+            await Repositorio.categorias.Fabrica.atualizarArray(options);
+        })
 
         return newProduto;
     } catch (error) {

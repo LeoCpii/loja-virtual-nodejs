@@ -7,10 +7,10 @@ exports.validar = (produto) => {
     arrError = [];
 
     const {
-        nome, descricao, valor, quantidade, status, fotos,
+        nome, descricao, valor, quantidade, status, fotos, promocao, destaque,
         detalhes = [
             {
-                nomeDetalhe,
+                nome,
                 valores: [
                     {
                         valorDetalhe
@@ -22,12 +22,13 @@ exports.validar = (produto) => {
 
     validaNumero(quantidade, 'Quantidade');
     validaEnum(status, Enum.STATUS);
+    validaPromocao(promocao, valor);
 
     return arrError;
 }
 
 const validaNumero = (numero, origem) => {
-    const isValid = Validator.isValidNumber(numero) && numero >= 0;
+    const isValid = Validator.isValidNumber(numero);
 
     if(!isValid){
         arrError.push({
@@ -42,6 +43,16 @@ const validaEnum = (valor, enumerador) => {
     if(!isValid){
         arrError.push({
             error: `Status inválido`
+        });
+    }
+}
+
+const validaPromocao = (promocao, valor) => {
+    const isValid = promocao < valor;
+
+    if(!isValid){
+        arrError.push({
+            error: `Valor da promoção deve ser menor que o valor atual`
         });
     }
 }

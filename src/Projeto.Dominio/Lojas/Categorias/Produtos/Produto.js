@@ -30,6 +30,14 @@ const ProdutoSchema = new mongoose.Schema({
         enum: [Object.values(STATUS)],
         required: [true, 'Status é obrigatório'],
     },
+    destaque: {
+        type: Boolean,
+        default: false
+    },
+    promocao: {
+        type: Number,
+        default: 0
+    },
     fotos: [{
         type: String
     }],
