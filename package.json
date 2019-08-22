@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./src/test/**/*.js",
+    "test": "nyc mocha ./src/test/**/*.js",
     "start": "nodemon ./bin/server.js"
   },
   "author": "",
@@ -14,7 +14,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^7.4.0",
     "mongoose": "^5.6.1",
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1"
   },
   "devDependencies": {
     "chai": "4.2.0",

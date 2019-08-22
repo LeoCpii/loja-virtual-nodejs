@@ -63,7 +63,7 @@ const validaCPF = (data) => {
 
     if(!isValid){
         arrError.push({
-            error: `Cpf inválido`
+            error: `CPF inválido`
         });
     }
 }

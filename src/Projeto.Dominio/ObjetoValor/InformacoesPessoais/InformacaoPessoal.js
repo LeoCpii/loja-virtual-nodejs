@@ -29,7 +29,7 @@ const InformacaoPessoalSchema = new mongoose.Schema({
         type: String,
         maxlength: [11, 'Tamanho inválido de CPF'],
         minlength: [11, 'Tamanho inválido de CPF'],
-        required: [true, 'Cpf é obrigatório'],
+        required: [true, 'CPF é obrigatório'],
     },
     sexo: {
         type: Number,
