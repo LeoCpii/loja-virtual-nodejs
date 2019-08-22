@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha ./src/test/**/*.js",
     "start": "nodemon ./bin/server.js"
   },
   "author": "",
@@ -17,6 +17,8 @@
     "nodemon": "^1.19.1"
   },
   "devDependencies": {
-    "jest": "^24.9.0"
+    "chai": "4.2.0",
+    "chai-http": "4.3.0",
+    "mocha": "6.2.0"
   }
 }
