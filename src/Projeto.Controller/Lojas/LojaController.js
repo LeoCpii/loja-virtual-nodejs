@@ -7,7 +7,6 @@ const auth = require('../../Projeto.API/auth/auth.service');
 * POST
 */
 router.post('/register', CasoDeUso.loja.criar.executar);
-router.post('/auth', CasoDeUso.loja.representanteLegal.auth.executar);
 
 /*
 * GET

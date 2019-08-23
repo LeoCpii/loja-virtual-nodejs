@@ -21,7 +21,7 @@ exports.validar = (produto) => {
     } = produto
 
     validaNumero(quantidade, 'Quantidade');
-    validaEnum(status, Enum.STATUS);
+    // validaEnum(status, Enum.STATUS);
     validaPromocao(promocao, valor);
 
     return arrError;
@@ -37,15 +37,15 @@ const validaNumero = (numero, origem) => {
     }
 }
 
-const validaEnum = (valor, enumerador) => {
-    const isValid = Validator.isValidEnum(valor, enumerador);
+// const validaEnum = (valor, enumerador) => {
+//     const isValid = Validator.isValidEnum(valor, enumerador);
 
-    if(!isValid){
-        arrError.push({
-            error: `Status inválido`
-        });
-    }
-}
+//     if(!isValid){
+//         arrError.push({
+//             error: `Status inválido`
+//         });
+//     }
+// }
 
 const validaPromocao = (promocao, valor) => {
     const isValid = promocao < valor;

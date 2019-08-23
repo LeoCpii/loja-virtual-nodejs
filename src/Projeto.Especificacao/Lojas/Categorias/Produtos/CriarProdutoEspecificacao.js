@@ -19,6 +19,7 @@ exports.executar = async (req) => {
 
         return newProduto;
     } catch (error) {
+        console.log('error aSDAS DASD SA')
         throw error;
     }
 }

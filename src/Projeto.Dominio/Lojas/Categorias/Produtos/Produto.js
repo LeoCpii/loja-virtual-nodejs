@@ -1,10 +1,5 @@
 const mongoose = require('../../../../Projeto.API/Configuracao/database');
 
-const STATUS = Object.freeze({
-    Indisponivel: 0,
-    Disponivel: 1
-});
-
 /*
 * Model - Produto
 */
@@ -21,22 +16,21 @@ const ProdutoSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Valor é obrigatório'],
     },
+    promocao: {
+        type: Number,
+        default: 0
+    },
     quantidade: {
         type: Number,
         required: [true, 'Quantidade é obrigatória'],
     },
     status: {
-        type: Number,
-        enum: [Object.values(STATUS)],
+        type: Boolean,
         required: [true, 'Status é obrigatório'],
     },
     destaque: {
         type: Boolean,
         default: false
-    },
-    promocao: {
-        type: Number,
-        default: 0
     },
     fotos: [{
         type: String
@@ -58,10 +52,6 @@ const ProdutoSchema = new mongoose.Schema({
     }]
 });
 
-Object.assign(ProdutoSchema.statics, {
-    STATUS,
-});
-
 const Produto = mongoose.model('Produto', ProdutoSchema);
 
-module.exports = { Produto, STATUS };
+module.exports = { Produto };

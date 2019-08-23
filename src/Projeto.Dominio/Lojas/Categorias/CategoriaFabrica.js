@@ -15,7 +15,7 @@ exports.criar = async (categoria) => {
 
     const newCategoria = await Dominio.Categoria.create({
         nome, descricao, cor
-    }).then().catch(e => {
+    }).catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
@@ -25,22 +25,26 @@ exports.criar = async (categoria) => {
 }
 
 exports.atualizarArray = async (options) => {
-   
-    const categoria = await Dominio.Categoria.findOne({ _id: options.id });
+    try {
+        const categoria = await Dominio.Categoria.findOne({ _id: options.id });
+        console.log(categoria)
+        if (Extension.EhNuloOuVazio(categoria)) {
+            throw new Handler.HandlerError(400, 'Categoria não encontrada');
+        }
 
-    if(Extension.EhNuloOuVazio(categoria)){
-        throw new Handler.HandlerError(400, 'Categoria não encontrada');
+        const attCategoria = await Dominio.Categoria.updateOne(
+            { _id: categoria._id },
+            { $addToSet: options.add },
+            { upsert: true }
+        ).catch(e => {
+            throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors))
+        });
+
+        return attCategoria;
+    } catch (error) {
+        throw error;
     }
 
-    const attCategoria = await Dominio.Categoria.updateOne(
-        { _id: categoria._id },
-        { $addToSet: options.add },
-        { upsert: true }
-    ).then().catch(e => {
-        throw new Handler.HandlerError( 400, errorHandling.concatErrors(e.errors))
-    });
-
-    return attCategoria;
 }
 
 exports.atualizar = async (categoria) => {
@@ -52,7 +56,7 @@ exports.atualizar = async (categoria) => {
         { $set: categoria },
         { upsert: true }
     ).then().catch(e => {
-        throw new Handler.HandlerError( 400, errorHandling.concatErrors(e.errors)
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors)
         );
     });
 
@@ -61,9 +65,9 @@ exports.atualizar = async (categoria) => {
 
 exports.excluir = async (categoriaId) => {
     await Dominio.Categoria.deleteOne({
-         _id: categoriaId
+        _id: categoriaId
     }).catch(e => {
-        throw new Handler.HandlerError( 400, errorHandling.concatErrors(e.errors)
+        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors)
         );
     });;
 }

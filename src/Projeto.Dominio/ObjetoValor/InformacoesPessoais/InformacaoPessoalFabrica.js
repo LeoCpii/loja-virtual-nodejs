@@ -5,15 +5,11 @@ const Dominio = require('./InformacaoPessoal');
 
 exports.criar = async (informacaoPessoal) => {
 
-    const {
-        nome, sobrenome, foto, dataNascimento, cpf, sexo, email, senha
-    } = informacaoPessoal;
-
     validar(informacaoPessoal);
 
-    const newCliente = await Dominio.InformacaoPessoal.create({
-        nome, sobrenome, foto, dataNascimento, cpf, sexo, email, senha
-    }).then().catch(e => {
+    const newCliente = await Dominio.InformacaoPessoal.create(
+        informacaoPessoal
+    ).catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
