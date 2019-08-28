@@ -18,12 +18,12 @@ const CasoDeUso = {
         categoria: {
             criar: require('./../../Projeto.CasoDeUso/Lojas/Categorias/CriarCategoriaCasoDeUso'),
             obter: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ObterCategoriasCasoDeUso'),
-            obterPorId: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ObterPorIdCategoriasCasoDeUso'),
+            obterPorSlug: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ObterPorSlugCategoriasCasoDeUso'),
             excluir: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ExcluirCategoriaCasoDeUso'),
             produto: {
                 criar: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/CriarProdutosCasoDeUso'),
                 obter: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterProdutosCasoDeUso'),
-                obterPorId: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterPorIdProdutosCasoDeUso')
+                obterPorSlug: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterPorSlugProdutosCasoDeUso')
             }
         }
     },

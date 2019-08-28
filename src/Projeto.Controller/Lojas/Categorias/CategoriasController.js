@@ -12,7 +12,7 @@ router.post('/register', auth.autorize, CasoDeUso.loja.categoria.criar.executar)
 * GET
 */
 router.get('', auth.autorize, CasoDeUso.loja.categoria.obter.executar);
-router.get('/:id', auth.autorize, CasoDeUso.loja.categoria.obterPorId.executar);
+router.get('/:slug', auth.autorize, CasoDeUso.loja.categoria.obterPorSlug.executar);
 
 /*
 * DELETE
