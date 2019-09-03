@@ -1,3 +1,5 @@
-const environment = require('./../../environments/environment');
+const environments = {
+    API_CEP: require('./../../environments/environment')
+}
 
-exports.apiCep = environment.apiCep;
+module.exports = environments;
