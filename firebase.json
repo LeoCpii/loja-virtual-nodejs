@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "loja-virtual-fireapp",
+  "private_key_id": "53d9b53271a0484d95eda7ef524c9d681778ab02",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCm7PfGAfreTaii\nEqsA9sw8Pk/zVa3kf0D+tANzBm/UNploS8lRTosyZPxBgJQL6MPvxpNwHBsVh1jN\nyjrgtYpgdYjI4UCo7HjT4m1TDacKp8E880H2g/Hte7iT/o/L0A0CGYJxovBMT08a\n89m+x7q3mhoAiH3zYFog9xy8SlMPMcPI4qMqFNx5pH+jd77YIZ+Pa+uBlgszmcc9\n5Xjb08rsEZUdQ7QDwZD3BTzmBJPivFtUuQhFvw5i0IXfg8jVIQaZnKQ8BBKDC5DT\njXAARKqkhx9ArUQtejt3u8ltDgIeJulvjQFMkVEjz7JSq0+yfaM6DQaGT+zkr/0g\nmCL1M4pDAgMBAAECggEABaWUiC0++FA2OS1afZDbvdn5yGiIlmc7oqIiT7zTAaHL\nNL0DlW2LxeumoOyhlXmNT0ovaKZ6wBKxDV0e+sUJZlPziaAdGNnPCJPrUNjwYqrk\nHZS5EYbLI1aBGviMkr96AS0tvXxelqZELcw7/HkzNszOvl/fquECi4TwguocvzHI\nuniphDQ5FW4YsU9YjjRhDsUXEQDca5qu8Aee1cOXS5iY4/3mmIG+Xyh4eKJtXMbb\nW3XT3vFm+r1+VfXIRrdfL8q8fgpvjHduFP5BXWgYPc6BWS7S/X6+7i0mWdcDwgOD\nH8RA2tCacutR9z88S1sh0+JgVMPmRzx13TsAMJvukQKBgQDjFuh5iIL96UxoKwVI\n9kK0cBIqZLQ+SA1rqZIUd6mqo6B78se4e7nt5IZnks6hRJW+FX2+ptZ5T7lNXXe8\nlZpFcMBLBkdrGuBmbU8W+tpAEekv+cOA8CyADS5plbIA2mQaXs+JOjfk2Mf6x4FP\nxZ3M1BTjqA5nB0TThqvQ7PDFaQKBgQC8LUFo7MWRPPP2vsPEkfjehNU2TjJZvc9E\nv8tEXH6HYJZ0b49t6ppqRY1PXbr4mUaVltpebpwmNKNk6X7qIGPHJSyvB+cx3kxb\nqCOEXKiyLSWYeoJHw4MH3gOr8CS9mF7LdB4L+4xuT6z4Qe6VvSKsmIWt4R24xalj\n1aMttC8AywKBgQDDPt/0Fi3h12NtMIfjum+RqcXEkz7xSYvYZDwHwvaqkvKZfxy+\nfgpXAiOZC30C5PAGNX4enF1MggIlBVa8WrgAOjfqiWSALuR+zD6y2E0rxvqB2DGC\nO31XP34HI8CewSZOEfRH3TlPVh9ie4OvrY3GHRY0wjpX1MUVRPWWtREx+QKBgQCU\nOnHT3O6jwYfLTemX5gRMBAaPiHlRB5tFZG8Rompo6USa42XwB2UrYS423nZxbQuU\nuge5axfFYKF01BkNBAaU0EuqdGdBeQJdEM0pbnPUJov+2EHXlcKZZ+EshzXpwySo\nzwb8GWI9YrW1uPnfKeUuX9ataS6oZctQwPCRB+YekQKBgQCLGJ9F4R9nq7SzFGRE\n2xyUFvik26mnagmS8AYfakVQzydH/IjI0OY9+QvRBXReUxcbW8nlILC50Q8VEAVW\nijbyuz9Cj9gUROoUr9xeO2JRhI3MHwiSBNpWnh74r1S1FsHqEWaBRsqQM2i6ShDM\nr2c7j93w/ufpUl58p2/VHoBHrQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-6e4am@loja-virtual-fireapp.iam.gserviceaccount.com",
+  "client_id": "105333113770275518733",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-6e4am%40loja-virtual-fireapp.iam.gserviceaccount.com"
+}
