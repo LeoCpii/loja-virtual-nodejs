@@ -3,37 +3,43 @@ const Handler = require('../../../../shared/services/handler.service');
 const errorHandling = require('../../../../shared/services/ErrorHandling.service');
 const Dominio = require('./Produto');
 const Storage = require('./../../../../Projeto.ServicoExterno/Firebase/storage');
+const Uploads = require('./../../../../shared/services/Upload.service');
 
-exports.criar = async (produto) => {
+exports.criar = async produto => {
+  validar(produto);
+  const caminhos = [];
+  let caminho;
 
-    validar(produto);
-    console.log(produto.fotos)
-    const caminhos = [];
+  const promises = produto.fotos.map(async foto => {
+    const path = Uploads.gerenatePath('comidas',foto.name);
+    const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
+   
+    Uploads.upload(path.server, base64Data);
+    caminho = await Storage.uploadToFireBase(path.server, path.firebase);
+    caminhos.push(caminho);
+  });
 
-    await Promise.all(produto.fotos.map(async foto => {
-        const caminho = await Storage.upload(foto.urlBase64);
-        caminhos.push(caminho)
-    }));
+  await Promise.all(promises);
 
-    console.log(caminho)
+  produto = {...produto, fotos: caminhos}
 
-    const newProduto = await Dominio.Produto.create(
-        produto
-    ).then().catch(e => {
-        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
+  const newProduto = await Dominio.Produto.create(produto)
+    .then()
+    .catch(e => {
+      throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
-    await newProduto.save();
+  await newProduto.save();
 
-    return newProduto.populate('detalhes.valores');
-}
+  return newProduto.populate('detalhes.valores');
+};
 
-const validar = (produto) => {
-    const validado = RegraDeNegocio.validar(produto);
+const validar = produto => {
+  const validado = RegraDeNegocio.validar(produto);
 
-    if (validado.length === 0) {
-        return;
-    }
+  if (validado.length === 0) {
+    return;
+  }
 
-    throw new Handler.HandlerError(400, validado);
-}
+  throw new Handler.HandlerError(400, validado);
+};
