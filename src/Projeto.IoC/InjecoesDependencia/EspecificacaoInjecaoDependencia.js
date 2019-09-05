@@ -12,12 +12,12 @@ const especificacao = {
         categorias: {
             criar: require('./../../Projeto.Especificacao/Lojas/Categorias/CriarCategoriaEspecificacao'),
             obter: require('./../../Projeto.Especificacao/Lojas/Categorias/ObterCategoriasEspecificacao'),
-            obterPorId: require('./../../Projeto.Especificacao/Lojas/Categorias/ObterCategoriaPorIdEspecificacao'),
+            obterPorSlug: require('../../Projeto.Especificacao/Lojas/Categorias/ObterCategoriaPorSlugEspecificacao'),
             excluir: require('./../../Projeto.Especificacao/Lojas/Categorias/ExcluirCategoriaEspecificacao'),
             produtos: {
                 criar: require('./../../Projeto.Especificacao/Lojas/Categorias/Produtos/CriarProdutoEspecificacao'),
                 obter: require('./../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoEspecificacao'),
-                obterPorId: require('./../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoPorIdEspecificacao'),
+                obterPorSlug: require('../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoPorSlugEspecificacao'),
             }
         }
     }

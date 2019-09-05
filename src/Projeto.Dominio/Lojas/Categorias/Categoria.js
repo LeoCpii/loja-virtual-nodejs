@@ -8,6 +8,9 @@ const CategoriaSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Nome é obrigatório'],
     },
+    slug: {
+        type: String
+    },
     descricao: {
         type: String,
         required: [true, 'Descrição é obrigatória'],

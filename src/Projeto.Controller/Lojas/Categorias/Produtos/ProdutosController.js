@@ -12,6 +12,6 @@ router.post('/register', auth.autorize, CasoDeUso.loja.categoria.produto.criar.e
 * GET
 */
 router.get('', auth.autorize, CasoDeUso.loja.categoria.produto.obter.executar);
-router.get('/:id', auth.autorize, CasoDeUso.loja.categoria.produto.obterPorId.executar);
+router.get('/:slug', auth.autorize, CasoDeUso.loja.categoria.produto.obterPorSlug.executar);
 
 module.exports = router;

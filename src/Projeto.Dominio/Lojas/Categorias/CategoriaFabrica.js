@@ -2,20 +2,23 @@ const RegraDeNegocio = require('./CategoriaRegraDeNegocio');
 const Handler = require('../../../shared/services/handler.service');
 const errorHandling = require('../../../shared/services/ErrorHandling.service');
 const Dominio = require('./Categoria');
-const Extensao = require('./../../Comum/Extensao');
 const Extension = require('./../../../shared/services/Extension.service');
+const Slug = require('./../../../shared/services/Slug.sevice');
 
 exports.criar = async (categoria) => {
 
-    const {
-        nome, descricao, cor
-    } = categoria
-
     validar(categoria);
 
-    const newCategoria = await Dominio.Categoria.create({
-        nome, descricao, cor
-    }).catch(e => {
+    const slug = Slug.criar(categoria.nome)
+    categoria = { ...categoria, slug };
+
+    const jaExiste = await Dominio.Categoria.findOne({ slug: slug });
+
+    if(jaExiste) { throw new Handler.HandlerError(422, 'Já existe uma categoria com esse nome.'); };
+
+    const newCategoria = await Dominio.Categoria.create(
+        categoria
+    ).catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 

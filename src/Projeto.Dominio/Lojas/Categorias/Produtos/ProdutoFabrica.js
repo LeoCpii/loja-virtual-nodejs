@@ -1,9 +1,10 @@
-const RegraDeNegocio = require('./ProdutoRegraDeNegocio');
-const Handler = require('../../../../shared/services/handler.service');
-const errorHandling = require('../../../../shared/services/ErrorHandling.service');
-const Dominio = require('./Produto');
-const Storage = require('./../../../../Projeto.ServicoExterno/Firebase/storage');
-const Uploads = require('./../../../../shared/services/Upload.service');
+const RegraDeNegocio = require("./ProdutoRegraDeNegocio");
+const Handler = require("../../../../shared/services/handler.service");
+const Slug = require("../../../../shared/services/Slug.sevice");
+const errorHandling = require("../../../../shared/services/ErrorHandling.service");
+const Dominio = require("./Produto");
+const Storage = require("./../../../../Projeto.ServicoExterno/Firebase/storage");
+const Uploads = require("./../../../../shared/services/Upload.service");
 
 exports.criar = async produto => {
   validar(produto);
@@ -11,9 +12,9 @@ exports.criar = async produto => {
   let caminho;
 
   const promises = produto.fotos.map(async foto => {
-    const path = Uploads.gerenatePath('comidas',foto.name);
-    const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
-   
+    const path = Uploads.gerenatePath("comidas", foto.name);
+    const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, "");
+
     Uploads.upload(path.server, base64Data);
     caminho = await Storage.uploadToFireBase(path.server, path.firebase);
     caminhos.push(caminho);
@@ -21,7 +22,10 @@ exports.criar = async produto => {
 
   await Promise.all(promises);
 
-  produto = {...produto, fotos: caminhos}
+  produto = { ...produto, fotos: caminhos };
+
+  const slug = Slug.criar(produto.nome);
+  produto = { ...produto, slug };
 
   const newProduto = await Dominio.Produto.create(produto)
     .then()
@@ -31,7 +35,7 @@ exports.criar = async produto => {
 
   await newProduto.save();
 
-  return newProduto.populate('detalhes.valores');
+  return newProduto.populate("detalhes.valores");
 };
 
 const validar = produto => {

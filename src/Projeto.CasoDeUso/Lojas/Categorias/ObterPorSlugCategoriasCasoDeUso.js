@@ -6,7 +6,7 @@ const Especificacao = require('../../../Projeto.IoC/InjecoesDependencia/Especifi
 
 exports.executar = async (req, res, next) => {
     try {
-        const categoria = await Especificacao.lojas.categorias.obterPorId.executar(req.params.id);
+        const categoria = await Especificacao.lojas.categorias.obterPorSlug.executar(req.params.slug);
 
         const mensagem = Handler.success('Categoria encontrada', categoria);
         return res.status(mensagem.status).send(mensagem);

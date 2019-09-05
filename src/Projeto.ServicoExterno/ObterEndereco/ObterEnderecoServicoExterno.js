@@ -7,7 +7,7 @@ const Handler = require('./../../shared/services/handler.service');
 
 exports.obterEndereco = async (cep) => {
     try {
-        const url = config.apiCep;
+        const url = config.API_CEP;
         const endereco = await ajax.get(`${url}${cep}/json`);
         return endereco;
     } catch (error) {
