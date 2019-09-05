@@ -4,7 +4,7 @@ const Handler = require('./../../../shared/services/handler.service');
 exports.executar = async () => {
     try {
 
-        const categorias = await Repositorio.categorias.Dominio.Categoria.find().populate(['produtos']);
+        const categorias = await Repositorio.categorias.Dominio.Categoria.find();
 
         return categorias;
     } catch (error) {

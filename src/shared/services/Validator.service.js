@@ -9,6 +9,7 @@ const monthRegex = /^\d{2}\/\d{4}/;
 const cepRegex = /^[0-9]{5}-[\d]{3}$/;
 const onlyNumberRegex = /^([0-9])*$/;
 const colorRegex = /^#([a-zA-Z0-9-])*$/;
+const base64Regex = /^data:([A-Za-z-+/]+);base64,/;
 
 exports.isValidEmail = (value) => {
     return emailRegex.test(value);
@@ -90,4 +91,8 @@ exports.isValidAge = (value) => {
     }
 
     return idade > 0 && idade < 100;
+}
+
+exports.isValidBase64 = (base64) => {
+    return base64Regex.test(base64);
 }

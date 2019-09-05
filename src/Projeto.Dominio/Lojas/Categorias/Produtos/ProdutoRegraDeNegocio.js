@@ -21,8 +21,9 @@ exports.validar = (produto) => {
     } = produto
 
     validaNumero(quantidade, 'Quantidade');
-    // validaEnum(status, Enum.STATUS);
+    validaBase64(fotos);
     validaPromocao(promocao, valor);
+    validaNome(nome);
 
     return arrError;
 }
@@ -37,15 +38,30 @@ const validaNumero = (numero, origem) => {
     }
 }
 
-// const validaEnum = (valor, enumerador) => {
-//     const isValid = Validator.isValidEnum(valor, enumerador);
+const validaNome = (nome) => {
+    const isValid = !!nome;
 
-//     if(!isValid){
-//         arrError.push({
-//             error: `Status inválido`
-//         });
-//     }
-// }
+    if(!isValid){
+        arrError.push({
+            error: `${origem} inválido`
+        });
+    }
+}
+
+const validaBase64 = (fotos) => {
+    const result = [];
+
+    fotos.map(foto => {
+        const isValid = Validator.isValidBase64(foto.base64);
+        result.push(isValid);
+    });
+
+    if(result.includes(false)){
+        arrError.push({
+            error: `A imagem deve estar no formato base64`
+        });
+    }
+}
 
 const validaPromocao = (promocao, valor) => {
     const isValid = promocao < valor;
