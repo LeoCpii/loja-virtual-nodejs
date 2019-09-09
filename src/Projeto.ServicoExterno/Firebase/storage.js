@@ -13,22 +13,31 @@ const bucket = storage.bucket(bucketName);
 // const uploadTo = `evidencia - grafico reserva.png`;
 
 exports.uploadToFireBase = (pathServer, pathFirebase) => {
-
+  console.log('*****************************')
+  console.log('pathServer: ' , pathServer)
+  console.log('pathFirebase: ', pathFirebase)
+  console.log('*****************************')
   bucket.upload(pathServer, {
-      destination: pathFirebase,
-      public: true
-    }, function(err, file) {
-      if (err) {
-        console.log("erro: ", err);
-      }
-    });
+    destination: pathFirebase,
+    public: true
+  }, function (err, file) {
+    if (err) {
+      console.log("erro: ", err);
+      return false;
+    }
+  });
   const newUrl = createPublicFileURL(pathFirebase);
   return newUrl;
 };
 
-exports.uploadToFireBase = (pathFirebase) => {
+exports.deleteToFireBase = (pathFirebase) => {
 
- 
+  const file = bucket.file(pathFirebase)
+
+  file.delete().catch(err => {
+    console.log("erro: ", err);
+  });
+
 };
 
 function createPublicFileURL(storageName) {

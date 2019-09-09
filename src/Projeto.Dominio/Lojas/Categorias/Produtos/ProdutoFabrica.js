@@ -12,7 +12,8 @@ exports.criar = async (produto, categorias) => {
   const slug = Slug.criar(produto.nome);
   const existe = await Dominio.Produto.findOne({ slug: slug });
   let pathServer = [];
-  // if (existe) { throw new Handler.HandlerError(422, 'Esse produto já foi cadastrado.'); } 
+
+  if (existe) { throw new Handler.HandlerError(422, 'Esse produto já foi cadastrado.'); } 
 
   const caminhos = [];
 
@@ -23,7 +24,9 @@ exports.criar = async (produto, categorias) => {
 
       Uploads.upload(path.server, base64Data);
       let caminho = await Storage.uploadToFireBase(path.server, path.firebase);
-
+      
+      if(!caminho) { throw new Handler.HandlerError(500, 'Erro ao fazer upload de imagem') }
+      
       caminho = caminho.replace(categoria, '##CATEGORIA##');
       pathServer.push(path.server)
 
@@ -54,3 +57,5 @@ const validar = produto => {
 
   throw new Handler.HandlerError(400, validado);
 };
+
+//associar

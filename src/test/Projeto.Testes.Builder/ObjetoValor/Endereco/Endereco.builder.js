@@ -1,4 +1,4 @@
-const mockEndereco = {
+const mock = {
     pais: 'Brasil',
     estado: 'Rio de Janeiro',
     cidade: 'Duque de Caxias',
@@ -9,6 +9,17 @@ const mockEndereco = {
     cep: '25050230'
 }
 
+getMock = (skeleton, value) =>  {
+    let data = {};
+
+    for (var key in mock) {
+        const helper = key === skeleton ? value : mock[key];
+        data = { ...data,  [key]: helper};
+    }
+
+    return data;
+}
+
 module.exports = {
-    endereco: mockEndereco
+    getMock: getMock
 }

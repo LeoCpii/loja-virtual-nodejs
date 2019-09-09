@@ -1,4 +1,4 @@
-const mockInformacaoPessoal= {
+const mock = {
     nome: 'Leonardo',
     sobrenome: 'Gonçalves',
     foto: "https://ped2018.com.br/media/palestrantes/merino.jpg",
@@ -9,6 +9,17 @@ const mockInformacaoPessoal= {
     senha: 'ASD123456789'
 }
 
+getMock = (skeleton, value) =>  {
+    let data = {};
+
+    for (var key in mock) {
+        const helper = key === skeleton ? value : mock[key];
+        data = { ...data,  [key]: helper};
+    }
+
+    return data;
+}
+
 module.exports = {
-    informcaoPessoal: mockInformacaoPessoal
+    getMock: getMock
 }
