@@ -26,6 +26,11 @@ exports.uploadToFireBase = (pathServer, pathFirebase) => {
   return newUrl;
 };
 
+exports.uploadToFireBase = (pathFirebase) => {
+
+ 
+};
+
 function createPublicFileURL(storageName) {
   return `http://storage.googleapis.com/${bucketName}/${storageName}`;
 }

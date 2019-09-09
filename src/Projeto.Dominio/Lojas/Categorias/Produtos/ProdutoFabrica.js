@@ -16,7 +16,7 @@ exports.criar = async (produto, categorias) => {
 
   const caminhos = [];
 
-  await Promise.all(categorias.map(async categoria => {
+  await Promise.all(categorias.map(async (categoria, index) => {
     await Promise.all(produto.fotos.map(async foto => {
       const path = Uploads.gerenatePath(categoria, foto.name);
       const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
@@ -25,9 +25,9 @@ exports.criar = async (produto, categorias) => {
       let caminho = await Storage.uploadToFireBase(path.server, path.firebase);
 
       caminho = caminho.replace(categoria, '##CATEGORIA##');
-      console.log(caminho)
-      caminhos.push(caminho);
       pathServer.push(path.server)
+
+      if(index === categorias.length - 1) { caminhos.push(caminho); }
     }));
   }));
 
