@@ -12,9 +12,11 @@
   "dependencies": {
     "@google-cloud/storage": "^3.2.1",
     "axios": "^0.19.0",
+    "ejs": "^2.7.1",
     "express": "^4.17.1",
     "jsonwebtoken": "^7.4.0",
     "mongoose": "^5.6.1",
+    "nodemailer": "^6.3.0",
     "nodemon": "^1.19.1",
     "nyc": "^14.1.1",
     "save-file": "^2.3.1"

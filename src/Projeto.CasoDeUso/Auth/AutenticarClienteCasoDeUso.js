@@ -3,6 +3,7 @@
 */
 const Handler = require('./../../shared/services/handler.service');
 
+
 exports.executar = async (req, res, next) => {
     try {
         const mensagem = Handler.success('Mensagem', 'Autorizado');

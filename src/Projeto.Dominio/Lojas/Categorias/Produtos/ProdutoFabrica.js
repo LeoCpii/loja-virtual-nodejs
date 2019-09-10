@@ -1,6 +1,6 @@
 const RegraDeNegocio = require('./ProdutoRegraDeNegocio');
 const Handler = require('../../../../shared/services/handler.service');
-const Slug = require('../../../../shared/services/Slug.sevice');
+const Slug = require('../../../../shared/services/Slug.service');
 const errorHandling = require('../../../../shared/services/ErrorHandling.service');
 const Dominio = require('./Produto');
 const Storage = require('./../../../../Projeto.ServicoExterno/Firebase/storage');
@@ -13,7 +13,7 @@ exports.criar = async (produto, categorias) => {
   const existe = await Dominio.Produto.findOne({ slug: slug });
   let pathServer = [];
 
-  if (existe) { throw new Handler.HandlerError(422, 'Esse produto já foi cadastrado.'); } 
+  if (existe) { throw new Handler.HandlerError(422, 'Esse produto já foi cadastrado.'); }
 
   const caminhos = [];
 
@@ -24,13 +24,13 @@ exports.criar = async (produto, categorias) => {
 
       Uploads.upload(path.server, base64Data);
       let caminho = await Storage.uploadToFireBase(path.server, path.firebase);
-      
-      if(!caminho) { throw new Handler.HandlerError(500, 'Erro ao fazer upload de imagem') }
-      
+
+      if (!caminho) { throw new Handler.HandlerError(500, 'Erro ao fazer upload de imagem') }
+
       caminho = caminho.replace(categoria, '##CATEGORIA##');
       pathServer.push(path.server)
 
-      if(index === categorias.length - 1) { caminhos.push(caminho); }
+      if (index === categorias.length - 1) { caminhos.push(caminho); }
     }));
   }));
 

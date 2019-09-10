@@ -1,4 +1,5 @@
 const fs = require("fs");
+const environment = require('./../../environments/environment');
 
 exports.upload = (path, file) => {
   fs.writeFileSync(path, file, { encoding: "base64" }, function(err) {
@@ -12,7 +13,7 @@ exports.upload = (path, file) => {
 exports.gerenatePath = (...args) => {  
   const paths = {
       firebase: '',
-      server: './src/assets/images/'
+      server: environment.imagePath 
   }
   paths.server += `${args[args.length-1]}/`;
   args.map(item => {

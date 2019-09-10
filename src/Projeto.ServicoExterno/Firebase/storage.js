@@ -13,10 +13,6 @@ const bucket = storage.bucket(bucketName);
 // const uploadTo = `evidencia - grafico reserva.png`;
 
 exports.uploadToFireBase = (pathServer, pathFirebase) => {
-  console.log('*****************************')
-  console.log('pathServer: ' , pathServer)
-  console.log('pathFirebase: ', pathFirebase)
-  console.log('*****************************')
   bucket.upload(pathServer, {
     destination: pathFirebase,
     public: true

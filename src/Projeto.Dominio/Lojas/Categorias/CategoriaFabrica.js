@@ -3,7 +3,7 @@ const Handler = require('../../../shared/services/handler.service');
 const errorHandling = require('../../../shared/services/ErrorHandling.service');
 const Dominio = require('./Categoria');
 const Extension = require('./../../../shared/services/Extension.service');
-const Slug = require('./../../../shared/services/Slug.sevice');
+const Slug = require('./../../../shared/services/Slug.service');
 
 exports.criar = async (categoria) => {
 
