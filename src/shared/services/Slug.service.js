@@ -1,6 +1,6 @@
 exports.criar = (str) => {
     str = str.toLowerCase();
-    str = str.replace(/\d+/g, '')
+    str = str.replace(/a-zA-Z0-9_.-+/g, '')
     str = str.replace(/_/g, '')
     str = str.replace(/[^\w\s]/gi, '')
     str = str.replace(/( )+/g, '-');

@@ -11,7 +11,7 @@ exports.criar = async (categoria) => {
 
     const slug = Slug.criar(categoria.nome)
     categoria = { ...categoria, slug };
-
+    console.log(slug)
     const jaExiste = await Dominio.Categoria.findOne({ slug: slug });
 
     if(jaExiste) { throw new Handler.HandlerError(422, 'Já existe uma categoria com esse nome.'); };
