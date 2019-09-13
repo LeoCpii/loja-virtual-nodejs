@@ -17,7 +17,7 @@ const especificacao = {
             produtos: {
                 criar: require('./../../Projeto.Especificacao/Lojas/Categorias/Produtos/CriarProdutoEspecificacao'),
                 obter: require('./../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoEspecificacao'),
-                obterPorSlug: require('../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoPorSlugEspecificacao'),
+                obterPorId: require('../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoPorIdEspecificacao'),
             }
         }
     }

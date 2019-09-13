@@ -23,7 +23,7 @@ const CasoDeUso = {
             produto: {
                 criar: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/CriarProdutosCasoDeUso'),
                 obter: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterProdutosCasoDeUso'),
-                obterPorSlug: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterPorSlugProdutosCasoDeUso')
+                obterPorId: require('../../Projeto.CasoDeUso/Lojas/Categorias/Produtos/ObterPorIdProdutosCasoDeUso')
             }
         }
     },
