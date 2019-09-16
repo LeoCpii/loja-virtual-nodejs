@@ -7,7 +7,7 @@ exports.validar = (produto) => {
     arrError = [];
 
     const {
-        nome, descricao, valor, quantidade, status, fotos, promocao, destaque,
+        nome, descricao, valor, quantidade, status, fotos, promocao, destaque, disponivel,
         detalhes = [
             {
                 nome,

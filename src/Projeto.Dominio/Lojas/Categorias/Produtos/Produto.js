@@ -15,6 +15,10 @@ const ProdutoSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Descrição é obrigatória'],
     },
+    disponivel: {
+        type: Boolean,
+        required: [true, 'Disponibilidade é obrigatória'],
+    },
     valor: {
         type: Number,
         required: [true, 'Valor é obrigatório'],
