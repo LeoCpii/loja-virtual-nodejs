@@ -5,10 +5,10 @@ function normalizaPort(val) {
     if (isNaN(port)) {
         return val;
     }
-if (port >= 0) {
+    if (port >= 0) {
         return port;
     }
-return false;
+    return false;
 }
 app.listen(port, function () {
     console.log(`app listening on port ${port}`)
