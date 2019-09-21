@@ -42,6 +42,10 @@ const ProdutoSchema = new mongoose.Schema({
     fotos: [{
         type: String
     }],
+    categorias: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Categoria'
+    }],
     detalhes: [{
         type: Object,
         nome: {

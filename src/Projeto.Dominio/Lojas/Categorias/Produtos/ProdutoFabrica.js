@@ -17,10 +17,11 @@ exports.criar = async (produto, categorias) => {
 
   const caminhos = [];
   
+  // Salvando fotos no FireStore.
   if(produto.fotos.length > 0) {
     await Promise.all(categorias.map(async (categoria, index) => {
       await Promise.all(produto.fotos.map(async foto => {
-        const path = Uploads.gerenatePath(categoria, foto.name);
+        const path = Uploads.gerenatePath(categoria.slug, foto.name);
         const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   
         Uploads.upload(path.server, base64Data);
@@ -28,7 +29,7 @@ exports.criar = async (produto, categorias) => {
   
         if (!caminho) { throw new Handler.HandlerError(500, 'Erro ao fazer upload de imagem') }
   
-        caminho = caminho.replace(categoria, '##CATEGORIA##');
+        caminho = caminho.replace(categoria.slug, '##CATEGORIA##');
         pathServer.push(path.server)
   
         if (index === categorias.length - 1) { caminhos.push(caminho); }
@@ -36,7 +37,7 @@ exports.criar = async (produto, categorias) => {
     }));
   } 
 
-  produto = { ...produto, fotos: caminhos, slug };
+  produto = { ...produto, fotos: caminhos, slug, categorias: categorias};
 
   const newProduto = await Dominio.Produto.create(produto)
     .catch(e => {

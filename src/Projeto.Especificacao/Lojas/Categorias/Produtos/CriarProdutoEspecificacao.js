@@ -11,7 +11,7 @@ exports.executar = async (req) => {
             
             if (!categoria) { throw new Handler.HandlerError(404, 'Categoria não encontrada'); }
 
-            categorias.push(categoria.slug)
+            categorias.push(categoria);
         }));
 
         const newProduto = await Repositorio.produtos.Fabrica.criar(req.produto, categorias);

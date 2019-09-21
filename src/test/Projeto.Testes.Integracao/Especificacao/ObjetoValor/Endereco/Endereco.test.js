@@ -3,9 +3,6 @@ const Repositorio = require('../../../../../Projeto.IoC/InjecoesDependencia/Repo
 const assert = require('assert');
 
 describe('Fabrica Endereco', () => {
-    before(function () {
-        this.skip();
-    });
     it('Deve retornar erro de País obrigatório - 400', done => {
         const value = mock.getMock('pais', '');
         Repositorio.enderecos.Fabrica.criar(value).catch(error => {
