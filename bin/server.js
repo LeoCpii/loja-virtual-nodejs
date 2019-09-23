@@ -1,14 +1,3 @@
-const fs = require('fs')
-const dotenv = require('dotenv');
-const envConfig = dotenv.parse(
-    process.env.NODE_ENV === 'test' ?
-        fs.readFileSync('.env.testing') :
-        fs.readFileSync('.env')
-)
-for (const k in envConfig) {
-    process.env[k] = envConfig[k]
-}
-
 const app = require('./../src/Projeto.API/app');
 const port = normalizaPort(process.env.PORT || '3000');
 function normalizaPort(val) {
