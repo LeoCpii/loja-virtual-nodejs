@@ -6,7 +6,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 app.use(bodyParser.json({ limit: '5mb' }));
 
-app.use('', controller.health); 
+app.use('', controller.health);
 app.use('/auth', controller.auth);
 app.use('/cliente', controller.cliente);
 app.use('/loja', controller.loja);

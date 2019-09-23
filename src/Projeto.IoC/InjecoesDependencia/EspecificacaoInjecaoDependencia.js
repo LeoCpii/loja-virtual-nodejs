@@ -13,6 +13,7 @@ const especificacao = {
             criar: require('./../../Projeto.Especificacao/Lojas/Categorias/CriarCategoriaEspecificacao'),
             obter: require('./../../Projeto.Especificacao/Lojas/Categorias/ObterCategoriasEspecificacao'),
             obterPorSlug: require('../../Projeto.Especificacao/Lojas/Categorias/ObterCategoriaPorSlugEspecificacao'),
+            atualizar: require('../../Projeto.Especificacao/Lojas/Categorias/AtualizarCategoriaEspecificacao'),
             excluir: require('./../../Projeto.Especificacao/Lojas/Categorias/ExcluirCategoriaEspecificacao'),
             produtos: {
                 criar: require('./../../Projeto.Especificacao/Lojas/Categorias/Produtos/CriarProdutoEspecificacao'),

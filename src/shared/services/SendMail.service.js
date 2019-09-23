@@ -1,8 +1,7 @@
-const config = require('../../Projeto.API/appsettings');
+
 const ejs = require('ejs');
 const nodemailer = require('nodemailer');
 const Handler = require('./handler.service');
-const environment = require('./../../environments/environment');
 
 const TEMPLATE = {
     newProduct: 'newProduct.ejs'
@@ -11,8 +10,8 @@ const TEMPLATE = {
 const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: config.mail,
-        pass: config.mailPassword
+        user: process.env.MAIL,
+        pass: process.env.MAIL_PASSWORD
     },
     tls: { rejectUnauthorized: false }
 });
@@ -21,7 +20,7 @@ exports.sendMail = async (mail) => {
     const html = await getTemplate(mail.template, mail.content);
 
     const mailOptions = {
-        from: config.mail,
+        from: process.env.MAIL,
         to: mail.to,
         subject: mail.subject,
         // text: 'Bem fácil, não? ;)',
@@ -48,7 +47,7 @@ getTemplate = async (key, content) => {
     }
 
     return new Promise((resolve, reject) => {
-        ejs.renderFile(`${environment.templatePath}${TEMPLATE[key]}`, content, (err, html) => {
+        ejs.renderFile(`${process.env.TEMPLATE_PATH}${TEMPLATE[key]}`, content, (err, html) => {
             resolve(html)
         })
     });

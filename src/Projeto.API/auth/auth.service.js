@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken');
 const Handler = require('../../shared/services/handler.service');
 
 exports.generateToken = async (data) => {
-    return await jwt.sign(data, global.SALT_KEY, { expiresIn: '1d' });
+    return await jwt.sign(data, process.env.SALT_KEY, { expiresIn: '1d' });
 }
 
 exports.decodeToken = async (token) => {
-    const data = await jwt.verify(token, global.SALT_KEY);
+    const data = await jwt.verify(token, process.env.SALT_KEY);
     return data;
 }
 
@@ -23,7 +23,7 @@ exports.autorize = async (req, res, next) => {
         const mensagem = Handler.errorStatus(error);
         return res.status(mensagem.status).send(mensagem);
     } else {
-        jwt.verify(token, global.SALT_KEY, (error, decoded) => {
+        jwt.verify(token, process.env.SALT_KEY, (error, decoded) => {
             if(error) {
                 const error = {
                     status: 401,

@@ -18,6 +18,7 @@ const CasoDeUso = {
         categoria: {
             criar: require('./../../Projeto.CasoDeUso/Lojas/Categorias/CriarCategoriaCasoDeUso'),
             obter: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ObterCategoriasCasoDeUso'),
+            atualizar: require('./../../Projeto.CasoDeUso/Lojas/Categorias/AtualizarCategoriaCasoDeUso'),
             obterPorSlug: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ObterPorSlugCategoriasCasoDeUso'),
             excluir: require('./../../Projeto.CasoDeUso/Lojas/Categorias/ExcluirCategoriaCasoDeUso'),
             produto: {

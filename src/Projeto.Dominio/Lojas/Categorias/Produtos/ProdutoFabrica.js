@@ -12,7 +12,7 @@ exports.criar = async (produto, categorias) => {
   const slug = Slug.criar(produto.nome);
   const existe = await Dominio.Produto.findOne({ slug: slug });
   let pathServer = [];
-
+  
   if (existe) { throw new Handler.HandlerError(422, 'Esse produto já foi cadastrado.'); }
 
   const caminhos = [];
