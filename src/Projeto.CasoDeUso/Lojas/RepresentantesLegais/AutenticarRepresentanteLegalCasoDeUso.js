@@ -13,7 +13,6 @@ exports.executar = async (req, res, next) => {
         } = req.body
         
         const representante = await Especificacao.lojas.representanteLegal.obterPorEmail.executar(email);
-
         const senhaIgual = senha && senha === representante.informacaoPessoal.senha ? true : false;
        
         if (!representante || !senhaIgual) {

@@ -7,14 +7,18 @@ const TEMPLATE = {
     newProduct: 'newProduct.ejs'
 };
 
-const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: process.env.MAIL,
-        pass: process.env.MAIL_PASSWORD
-    },
-    tls: { rejectUnauthorized: false }
-});
+const getCredentials = () => {
+    const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: process.env.MAIL,
+            pass: process.env.MAIL_PASSWORD
+        },
+        tls: { rejectUnauthorized: false }
+    });
+
+    return transporter;
+}
 
 exports.sendMail = async (mail) => {
     const html = await getTemplate(mail.template, mail.content);
@@ -31,7 +35,7 @@ exports.sendMail = async (mail) => {
 }
 
 send = (mailOptions) => {
-    transporter.sendMail(mailOptions, (error, info) => {
+    getCredentials().sendMail(mailOptions, (error, info) => {
         if (error) {
             return error;
         } else {
