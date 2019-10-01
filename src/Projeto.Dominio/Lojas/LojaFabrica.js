@@ -26,7 +26,7 @@ exports.criar = async (loja, endereco, representanteLegal) => {
     return newLoja;
 }
 
-exports.atualizarArray = async (loja) => {
+exports.associar = async (loja) => {
 
     const idLoja = await Dominio.Loja.findOne();
 
@@ -42,7 +42,7 @@ exports.atualizarArray = async (loja) => {
 }
 
 exports.atualizar = async (loja) => {
-
+    
     const idLoja = await Dominio.Loja.findOne();
 
     const attLoja = await Dominio.Loja.updateOne(

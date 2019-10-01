@@ -8,7 +8,7 @@ exports.executar = async (categoria) => {
 
         const options = { categorias: [ newCategoria ] }
         
-        await Repositorio.lojas.Fabrica.atualizarArray(options);
+        await Repositorio.lojas.Fabrica.associar(options);
 
         return newCategoria;
     } catch (error) {

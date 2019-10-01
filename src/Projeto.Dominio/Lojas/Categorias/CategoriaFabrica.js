@@ -26,7 +26,7 @@ exports.criar = async (categoria) => {
     return newCategoria;
 }
 
-exports.atualizarArray = async (options) => {
+exports.associar = async (options) => {
     const categoria = await Dominio.findById(options.id);
     
     if (Extension.EhNuloOuVazio(categoria)) {

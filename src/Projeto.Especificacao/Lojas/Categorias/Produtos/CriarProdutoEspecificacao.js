@@ -22,7 +22,7 @@ exports.executar = async (req) => {
                     produtos: [newProduto]
                 }
             }
-            await Repositorio.categorias.Fabrica.atualizarArray(options);
+            await Repositorio.categorias.Fabrica.associar(options);
         }));
         return newProduto;
     } catch (error) {

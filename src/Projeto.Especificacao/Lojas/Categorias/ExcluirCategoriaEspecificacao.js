@@ -26,7 +26,7 @@ exports.executar = async (slug) => {
             }
         }
 
-        await Repositorio.categorias.Fabrica.atualizarArray(options);
+        await Repositorio.categorias.Fabrica.associar(options);
     }
 
     return await Repositorio.categorias.Fabrica.excluir(slug);
