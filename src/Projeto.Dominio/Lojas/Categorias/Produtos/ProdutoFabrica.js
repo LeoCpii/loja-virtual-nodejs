@@ -25,11 +25,11 @@ exports.criar = async (produto, categorias) => {
         const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   
         Uploads.upload(path.server, base64Data);
-        let caminho = await Storage.uploadToFireBase(path.server, path.firebase);
+        let caminho = Storage.uploadToFireBase(path.server, path.firebase);
   
         if (!caminho) { throw new Handler.HandlerError(500, 'Erro ao fazer upload de imagem') }
   
-        pathServer.push(path.server);
+        pathServer.push(path.server)
   
         if (index === categorias.length - 1) { caminhos.push(caminho); }
       }));

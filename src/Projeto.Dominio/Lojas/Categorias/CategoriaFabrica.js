@@ -46,6 +46,9 @@ exports.atualizarArray = async (options) => {
 
 exports.atualizar = async (categoria, categoriaId) => {
     const idCategoria = await Dominio.findById(categoriaId);
+
+    if(!idCategoria) { throw new Handler.HandlerError(404, 'Categoria não encontrada.'); };
+
     const attCategoria = await Dominio.updateOne(
         { _id: idCategoria._id },
         { $set: categoria },
@@ -57,9 +60,9 @@ exports.atualizar = async (categoria, categoriaId) => {
     return attCategoria;
 }
 
-exports.excluir = async (categoriaId) => {
+exports.excluir = async (slug) => {
     await Dominio.deleteOne({
-        _id: categoriaId
+        slug: slug
     }).catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors)
         );

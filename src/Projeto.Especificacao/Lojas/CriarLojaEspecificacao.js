@@ -24,8 +24,18 @@ exports.executar = async (loja) => {
         
         await Repositorio.categorias.Fabrica.criar(catagoria);
 
-        const params = { loja: newLoja }
+        const dataCategoria = {
+            nome: 'Sem categoria',
+            descricao: 'Produtos que não possuem categorias',
+            cor: '#34465D'
+        }
 
+        const categoria = await Repositorio.categorias.Fabrica.criar(dataCategoria)
+
+        const params = { loja: newLoja }
+        const options = { categorias: [ categoria ] }
+        
+        await Repositorio.lojas.Fabrica.atualizarArray(options);
         await Repositorio.representantesLegais.Fabrica.atualizar(representanteLegal._id, params);
 
         return newLoja;
