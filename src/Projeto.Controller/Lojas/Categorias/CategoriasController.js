@@ -22,6 +22,6 @@ router.put('/update/:slug', auth.autorize, CasoDeUso.loja.categoria.atualizar.ex
 /*
 * DELETE
 */
-router.delete('/:id', auth.autorize, CasoDeUso.loja.categoria.excluir.executar);
+router.delete('/:slug', auth.autorize, CasoDeUso.loja.categoria.excluir.executar);
 
 module.exports = router;

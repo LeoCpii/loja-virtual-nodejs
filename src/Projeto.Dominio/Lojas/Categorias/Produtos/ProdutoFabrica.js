@@ -21,15 +21,14 @@ exports.criar = async (produto, categorias) => {
   if(produto.fotos.length > 0) {
     await Promise.all(categorias.map(async (categoria, index) => {
       await Promise.all(produto.fotos.map(async foto => {
-        const path = Uploads.gerenatePath(categoria.slug, foto.name);
+        const path = Uploads.gerenatePath('produtos', foto.name);
         const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   
         Uploads.upload(path.server, base64Data);
-        let caminho = await Storage.uploadToFireBase(path.server, path.firebase);
+        let caminho = Storage.uploadToFireBase(path.server, path.firebase);
   
         if (!caminho) { throw new Handler.HandlerError(500, 'Erro ao fazer upload de imagem') }
   
-        caminho = caminho.replace(categoria.slug, '##CATEGORIA##');
         pathServer.push(path.server)
   
         if (index === categorias.length - 1) { caminhos.push(caminho); }
