@@ -12,4 +12,10 @@ router.post('/register', CasoDeUso.loja.criar.executar);
 * GET
 */
 router.get('', auth.autorize, CasoDeUso.loja.obter.executar);
+
+/*
+* PUT
+*/
+router.put('/update/:slug', auth.autorize, CasoDeUso.loja.atualizar.executar);
+
 module.exports = router;

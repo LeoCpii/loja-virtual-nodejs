@@ -23,7 +23,7 @@ exports.executar = async (req, res, next) => {
             unique: representante._id,
             email: representante.informacaoPessoal.email,
             nome: representante.informacaoPessoal.nome,
-            loja: representante.loja._id,
+            loja: representante.loja.slug,
         })
 
         const mensagem = Handler.success('Usuário logado', token);

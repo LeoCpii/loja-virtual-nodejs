@@ -14,8 +14,28 @@ const LojaSchema = new mongoose.Schema({
         maxlength: [14, 'CNPJ inválido'],
         required: [true, 'Email é obrigatório'],
     },
-    foto: {
+    tema: {
+        type: Object,
+        primaria: {
+            type: String,
+            required: [true, 'Cor primária é obrigatória'],
+        },
+        secundaria: {
+            type: String,
+            required: [true, 'Cor secundária é obrigatória'],
+        },
+        foto: {
+            type: String,
+        },
+        default: {
+            primaria: '#D4E157',
+            secundaria: '#2C3E50',
+            foto: '',
+        }
+    },
+    slug: {
         type: String,
+        required: [true, 'Slug é obrigatório'],
     },
     categorias: [{
         type: mongoose.Schema.Types.ObjectId,

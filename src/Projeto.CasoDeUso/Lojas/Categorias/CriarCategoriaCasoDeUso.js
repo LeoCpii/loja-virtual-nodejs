@@ -3,10 +3,14 @@
 */
 const Handler = require('./../../../shared/services/handler.service');
 const Especificacao = require('./../../../Projeto.IoC/InjecoesDependencia/EspecificacaoInjecaoDependencia');
+const Utils = require('./../../../shared/services/Utils.service');
 
 exports.executar = async (req, res, next) => {
     try {
-        const categoria = await Especificacao.lojas.categorias.criar.executar(req.body);
+
+        const loja = await Utils.lojaAtual(req.header('x-access-token'));
+
+        const categoria = await Especificacao.lojas.categorias.criar.executar(req.body, loja);
         
         const mensagem = Handler.success('Categoria cadastrada com sucesso', categoria);
         return res.status(mensagem.status).send(mensagem);

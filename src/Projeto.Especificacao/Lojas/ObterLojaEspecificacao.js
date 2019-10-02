@@ -1,10 +1,9 @@
 const Repositorio = require('../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
-const Handler = require('./../../shared/services/handler.service');
 
-exports.executar = async () => {
+exports.executar = async (query) => {
     try {
 
-        const loja = await Repositorio.lojas.Dominio.Loja.findOne().populate(
+        const loja = await Repositorio.lojas.Dominio.Loja.find(query).populate(
             ['endereco', 'representanteLegal', 'categorias',
                 {
                     path: 'representanteLegal', populate: {

@@ -6,14 +6,14 @@ const Dominio = require('./Loja');
 exports.criar = async (loja, endereco, representanteLegal) => {
 
     const {
-        razaoSocial, cnpj, foto
+        razaoSocial, cnpj, foto, slug, tema
     } = loja
 
     validar(loja);
 
     const newLoja = await Dominio.Loja.create(
         {
-            razaoSocial, cnpj, foto,
+            razaoSocial, cnpj, foto, slug, tema,
             endereco,
             representanteLegal
         }
@@ -26,13 +26,13 @@ exports.criar = async (loja, endereco, representanteLegal) => {
     return newLoja;
 }
 
-exports.associar = async (loja) => {
+exports.associar = async (options, slug) => {
 
-    const idLoja = await Dominio.Loja.findOne();
+    const loja = await Dominio.Loja.findOne({ slug: slug });
 
     const attLoja = await Dominio.Loja.updateOne(
-        { _id: idLoja._id },
-        { $addToSet: loja },
+        { _id: loja._id },
+        { $addToSet: options },
         { upsert: true }
     ).then().catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
@@ -41,13 +41,10 @@ exports.associar = async (loja) => {
     return attLoja;
 }
 
-exports.atualizar = async (loja) => {
-    
-    const idLoja = await Dominio.Loja.findOne();
-
+exports.atualizar = async (lojaId, params) => {
     const attLoja = await Dominio.Loja.updateOne(
-        { _id: idLoja._id },
-        { $set: loja },
+        { _id: lojaId },
+        { $set: params },
         { upsert: true }
     ).then().catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));

@@ -12,6 +12,7 @@ const CasoDeUso = {
     loja: {
         criar: require('./../../Projeto.CasoDeUso/Lojas/CriarLojaCasoDeUso'),
         obter: require('./../../Projeto.CasoDeUso/Lojas/ObterLojaCasoDeUso'),
+        atualizar: require('./../../Projeto.CasoDeUso/Lojas/AtualizarLojaCasoDeUso'),
         representanteLegal: {
             auth: require('./../../Projeto.CasoDeUso/Lojas/RepresentantesLegais/AutenticarRepresentanteLegalCasoDeUso'),
         },

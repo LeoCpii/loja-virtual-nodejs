@@ -44,14 +44,14 @@ exports.associar = async (options) => {
     return attCategoria;
 }
 
-exports.atualizar = async (categoria, categoriaId) => {
+exports.atualizar = async (params, categoriaId) => {
     const idCategoria = await Dominio.findById(categoriaId);
 
     if(!idCategoria) { throw new Handler.HandlerError(404, 'Categoria não encontrada.'); };
 
     const attCategoria = await Dominio.updateOne(
-        { _id: idCategoria._id },
-        { $set: categoria },
+        { _id: categoriaId },
+        { $set: params },
         { upsert: true }
     ).catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));

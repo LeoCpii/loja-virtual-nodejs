@@ -20,6 +20,7 @@ const InformacaoPessoalSchema = new mongoose.Schema({
     },
     foto: {
         type: String,
+        default: ''
     },
     dataNascimento: {
         type: String,
