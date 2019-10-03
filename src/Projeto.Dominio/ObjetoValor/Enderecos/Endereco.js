@@ -1,11 +1,17 @@
 const mongoose = require('../../../Projeto.API/Configuracao/database');
 
+const PAISES = Object.freeze({
+    Brasil: 0,
+    Outros: 1
+})
+
 /*
 * Model - Endereco
 */
 const EnderecoSchema = new mongoose.Schema({
     pais: {
-        type: String,
+        type: Number,
+        enum: [Object.values(PAISES)],
         required: [true, 'País é obrigatório'],
     },
     estado: {
@@ -40,6 +46,10 @@ const EnderecoSchema = new mongoose.Schema({
     }
 });
 
+Object.assign(EnderecoSchema.statics, {
+    PAISES,
+});
+
 const Endereco = mongoose.model('Endereco', EnderecoSchema);
 
-module.exports = { Endereco };
+module.exports = { Endereco, PAISES };

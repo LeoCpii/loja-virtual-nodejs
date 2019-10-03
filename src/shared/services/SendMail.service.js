@@ -4,7 +4,8 @@ const nodemailer = require('nodemailer');
 const Handler = require('./handler.service');
 
 const TEMPLATE = {
-    newProduct: 'newProduct.ejs'
+    newProduct: 'newProduct.ejs',
+    registerStore: 'registerStore.ejs'
 };
 
 const getCredentials = () => {
