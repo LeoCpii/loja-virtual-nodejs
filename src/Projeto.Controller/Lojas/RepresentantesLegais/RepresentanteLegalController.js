@@ -8,4 +8,9 @@ const auth = require('../../../Projeto.API/auth/auth.service');
 */
 router.post('/auth', CasoDeUso.loja.representanteLegal.auth.executar);
 
+/*
+* GET
+*/
+router.get('', auth.autorize, CasoDeUso.loja.representanteLegal.obter.executar);
+
 module.exports = router;
