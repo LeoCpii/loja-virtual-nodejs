@@ -16,6 +16,6 @@ router.get('', auth.autorize, CasoDeUso.loja.obter.executar);
 /*
 * PUT
 */
-router.put('/update/:slug', auth.autorize, CasoDeUso.loja.atualizar.executar);
+router.put('/update', auth.autorize, CasoDeUso.loja.atualizar.executar);
 
 module.exports = router;

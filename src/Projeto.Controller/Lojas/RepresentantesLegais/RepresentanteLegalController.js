@@ -13,4 +13,9 @@ router.post('/auth', CasoDeUso.loja.representanteLegal.auth.executar);
 */
 router.get('', auth.autorize, CasoDeUso.loja.representanteLegal.obter.executar);
 
+/*
+* PUT
+*/
+router.put('/update', auth.autorize, CasoDeUso.loja.representanteLegal.atualizar.executar);
+
 module.exports = router;

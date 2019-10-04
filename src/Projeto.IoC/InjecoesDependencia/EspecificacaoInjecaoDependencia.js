@@ -9,6 +9,7 @@ const especificacao = {
         atualizar: require('./../../Projeto.Especificacao/Lojas/AtualizarLojaEspecificacao'),
         representanteLegal: {
             obterPorEmail: require('./../../Projeto.Especificacao/Lojas/RepresentantesLegais/ObterRepresentanteLegalPorEmailEspecificacao'),
+            atualizar: require('./../../Projeto.Especificacao/Lojas/RepresentantesLegais/AtualizarRepresentanteLegalEspecificacao'),
         },
         categorias: {
             criar: require('./../../Projeto.Especificacao/Lojas/Categorias/CriarCategoriaEspecificacao'),

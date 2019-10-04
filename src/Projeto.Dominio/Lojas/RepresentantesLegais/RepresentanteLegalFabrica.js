@@ -7,13 +7,26 @@ exports.criar = async (informacaoPessoal) => {
 
     const representanteLegal = await Dominio.RepresentanteLegal.create(
         { informacaoPessoal }
-    ).then().catch(e => {
+    ).catch(e => {
         throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
     });
 
     await representanteLegal.save();
 
     return representanteLegal;
+}
+
+exports.atualizar = async (id, params) => {
+    console.log(params)
+    const attRepresentate = await Dominio.RepresentanteLegal.updateOne(
+        { _id: id },
+        { $set: params },
+        { upsert: true }
+    ).catch(e => {
+        console.log(e)
+        throw new Handler.HandlerError(400, e.message);
+    });
+    return attRepresentate;
 }
 
 const validar = (representanteLegal) => {
@@ -24,16 +37,4 @@ const validar = (representanteLegal) => {
     }
 
     throw new Handler.HandlerError(400, validado);
-}
-
-exports.atualizar = async (id, params) => {
-
-    const attRepresentate = await Dominio.RepresentanteLegal.updateOne(
-        { _id: id },
-        { $set: params },
-        { upsert: true }
-    ).then().catch(e => {
-        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
-    });
-    return attRepresentate;
 }

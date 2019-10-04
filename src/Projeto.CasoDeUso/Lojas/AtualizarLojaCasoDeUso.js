@@ -9,12 +9,8 @@ exports.executar = async (req, res, next) => {
     try {
 
         const lojaAtual = await Utils.lojaAtual(req.header('x-access-token'));
-        
-        if(lojaAtual.slug !== req.params.slug) {
-            throw new Handler.HandlerError(403, 'Você não possui autorização atualizar essa loja');
-        }
 
-        const loja = await Especificacao.lojas.obter.executar({ slug: req.params.slug })
+        const loja = await Especificacao.lojas.obter.executar({ slug: lojaAtual.slug });
 
         await Especificacao.lojas.atualizar.executar(loja[0]._id, req.body);
 
