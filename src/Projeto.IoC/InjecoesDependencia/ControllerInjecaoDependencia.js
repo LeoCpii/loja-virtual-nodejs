@@ -7,6 +7,7 @@ const controller = {
     produto: require('./../../Projeto.Controller/Lojas/Categorias/Produtos/ProdutosController'),
     representanteLegal: require('./../../Projeto.Controller/Lojas/RepresentantesLegais/RepresentanteLegalController'),
     endereco: require('./../../Projeto.Controller/ObjetoValor/Enderecos/EnderecoController'),
+    informacaoPessoal: require('./../../Projeto.Controller/ObjetoValor/InformacaoPessoal/InformacaoPessoalController'),
 };
 
 module.exports = controller;

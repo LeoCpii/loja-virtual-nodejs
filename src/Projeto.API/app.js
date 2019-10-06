@@ -14,5 +14,6 @@ app.use('/categoria', controller.categoria);
 app.use('/produto', controller.produto);
 app.use('/representanteLegal', controller.representanteLegal);
 app.use('/endereco', controller.endereco);
+app.use('/informacaoPessoal', controller.informacaoPessoal);
 
 module.exports = app;

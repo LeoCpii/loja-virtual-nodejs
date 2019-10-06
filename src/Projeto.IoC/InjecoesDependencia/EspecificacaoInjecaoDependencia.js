@@ -23,6 +23,14 @@ const especificacao = {
                 obterPorId: require('../../Projeto.Especificacao/Lojas/Categorias/Produtos/ObterProdutoPorIdEspecificacao'),
             }
         }
+    },
+    objetoValor: {
+        // endereco: {
+        //     obterPorCEP: require('./../../Projeto.CasoDeUso/ObjetoValor/Enderecos/EnderecoCasoDeUso')
+        // },
+        informacaoPessoal: {
+            atualizar: require('./../../Projeto.Especificacao/ObjetoValor/InformacoesPessoais/AtualizarInformacaoPessoalEspecificacao')
+        }
     }
 };
 

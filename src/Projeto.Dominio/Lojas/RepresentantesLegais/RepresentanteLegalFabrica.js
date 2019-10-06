@@ -17,13 +17,11 @@ exports.criar = async (informacaoPessoal) => {
 }
 
 exports.atualizar = async (id, params) => {
-    console.log(params)
     const attRepresentate = await Dominio.RepresentanteLegal.updateOne(
         { _id: id },
         { $set: params },
         { upsert: true }
     ).catch(e => {
-        console.log(e)
         throw new Handler.HandlerError(400, e.message);
     });
     return attRepresentate;

@@ -34,6 +34,9 @@ const CasoDeUso = {
     objetoValor: {
         endereco: {
             obterPorCEP: require('./../../Projeto.CasoDeUso/ObjetoValor/Enderecos/EnderecoCasoDeUso')
+        },
+        informacaoPessoal: {
+            atualizar: require('../../Projeto.CasoDeUso/ObjetoValor/InformacoesPessoais/InformacaoPessoalCasoDeUso')
         }
     }
 };

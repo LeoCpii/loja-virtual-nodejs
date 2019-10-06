@@ -28,7 +28,7 @@ const LojaSchema = new mongoose.Schema({
             type: String,
         },
         default: {
-            primaria: '#D4E157',
+            primaria: '#3B5999',
             secundaria: '#2C3E50',
             foto: '',
         }

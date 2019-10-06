@@ -47,7 +47,7 @@ exports.atualizar = async (lojaId, params) => {
         { $set: params },
         { upsert: true }
     ).then().catch(e => {
-        throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
+        throw new Handler.HandlerError(400, e.message);
     });
 
     return attLoja;

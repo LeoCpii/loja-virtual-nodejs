@@ -13,12 +13,12 @@ exports.executar = async (req, res, next) => {
       lojaAtual.email
     );
 
-    await Especificacao.lojas.representanteLegal.atualizar.executar(
-      representante._id,
+    await Especificacao.objetoValor.informacaoPessoal.atualizar.executar(
+      representante.informacaoPessoal._id,
       req.body
-    );
+    )
 
-    const mensagem = Handler.success('Representate atualizado com sucesso');
+    const mensagem = Handler.success('Representante atualizado com sucesso');
     return res.status(mensagem.status).send(mensagem);
   } catch (error) {
     const mensagem = Handler.errorStatus(error);
