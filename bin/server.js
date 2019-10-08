@@ -10,7 +10,7 @@ function normalizaPort(val) {
     }
     return false;
 }
-app.listen(port, '10.252.1.68', function () {
+app.listen(port, function () {
     console.log('*****************************');
     console.log(`evironments - ${process.env.NODE_ENV}`);
     console.log(`app listening on port ${port}`);
