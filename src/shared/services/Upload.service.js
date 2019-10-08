@@ -2,7 +2,7 @@ const fs = require('fs');
 const Mail = require('./../../shared/services/SendMail.service');
 
 exports.upload = async (path, file) => {
-  fs.writeFileSync(path, file, { encoding: 'base64' }, function(err) {
+  fs.writeFileSync(path, file, { encoding: 'base64' },async (err) => {
     if (err) {
       const objMail = {
         to: 'leogoncalves.contato@gmail.com',
@@ -13,7 +13,7 @@ exports.upload = async (path, file) => {
         },
       };
 
-      Mail.sendMail(objMail);
+      await Mail.sendMail(objMail);
       console.error(err)
     }
     console.error('err')

@@ -22,7 +22,7 @@ exports.executar = async (req, res, next) => {
             },
         };
 
-        Mail.sendMail(objMail);
+        await Mail.sendMail(objMail);
 
         const mensagem = Handler.success('Produto cadastrado com sucesso', produto);
         return res.status(mensagem.status).send(mensagem);

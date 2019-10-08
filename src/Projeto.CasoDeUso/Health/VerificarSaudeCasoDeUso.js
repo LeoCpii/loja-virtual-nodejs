@@ -13,7 +13,7 @@ exports.executar = async (req, res, next) => {
             content: { teste: 'TESTANDO EMAIL NODE.JS' },
         };
 
-        Mail.sendMail(objMail);
+        await Mail.sendMail(objMail);
         const mensagem = Handler.success('Aplicação saudável');
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {

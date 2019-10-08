@@ -21,8 +21,8 @@ const getCredentials = () => {
     return transporter;
 }
 
-exports.sendMail = (mail) => {
-    const html = getTemplate(mail.template, mail.content);
+exports.sendMail = async (mail) => {
+    const html = await getTemplate(mail.template, mail.content);
 
     const mailOptions = {
         from: process.env.MAIL,

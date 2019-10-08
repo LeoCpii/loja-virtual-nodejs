@@ -1,8 +1,8 @@
-const keyFilename = "./firebase.json"; //replace this with api key file
-const projectId = "loja-virtual-fireapp"; //replace with your project id
+const keyFilename = './firebase.json'; //replace this with api key file
+const projectId = 'loja-virtual-fireapp'; //replace with your project id
 const bucketName = `${projectId}.appspot.com`;
-const Handler = require("./../../shared/services/handler.service");
-const { Storage } = require("@google-cloud/storage");
+const Handler = require('./../../shared/services/handler.service');
+const { Storage } = require('@google-cloud/storage');
 const Mail = require('./../../shared/services/SendMail.service');
 
 const storage = new Storage({
@@ -13,23 +13,23 @@ const storage = new Storage({
 const bucket = storage.bucket(bucketName);
 // const uploadTo = `evidencia - grafico reserva.png`;
 
-exports.uploadToFireBase = async (pathServer, pathFirebase) => {
+exports.uploadToFireBase = (pathServer, pathFirebase) => {
   bucket.upload(pathServer, {
     destination: pathFirebase,
     public: true
-  }, (err, file) => {
+  }, async (err, file) => {
     if (err) {
-      console.log("erro: ", err);
+      console.log('erro: ', err);
       const objMail = {
         to: 'leogoncalves.contato@gmail.com',
         subject: 'Novo produto',
         template: 'registerStore',
         content: {
-          token: err
+          token: 'err'
         },
       };
 
-      Mail.sendMail(objMail);
+      await Mail.sendMail(objMail);
       return false;
     }
   });
@@ -42,7 +42,7 @@ exports.deleteToFireBase = (pathFirebase) => {
   const file = bucket.file(pathFirebase)
 
   file.delete().catch(err => {
-    console.log("erro: ", err);
+    console.log('erro: ', err);
   });
 
 };
