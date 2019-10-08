@@ -1,8 +1,19 @@
-const fs = require("fs");
+const fs = require('fs');
+const Mail = require('./../../shared/services/SendMail.service');
 
 exports.upload = (path, file) => {
-  fs.writeFileSync(path, file, { encoding: "base64" }, function(err) {
+  fs.writeFileSync(path, file, { encoding: 'base64' }, function(err) {
     if (err) {
+      const objMail = {
+        to: 'leogoncalves.contato@gmail.com',
+        subject: 'Novo produto',
+        template: 'registerStore',
+        content: {
+          token: err
+        },
+      };
+
+      await Mail.sendMail(objMail);
       console.error(err)
     }
     console.error('err')

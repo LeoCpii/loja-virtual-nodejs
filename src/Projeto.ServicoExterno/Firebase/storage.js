@@ -3,6 +3,7 @@ const projectId = "loja-virtual-fireapp"; //replace with your project id
 const bucketName = `${projectId}.appspot.com`;
 const Handler = require("./../../shared/services/handler.service");
 const { Storage } = require("@google-cloud/storage");
+const Mail = require('./../../shared/services/SendMail.service');
 
 const storage = new Storage({
   projectId,
@@ -12,13 +13,23 @@ const storage = new Storage({
 const bucket = storage.bucket(bucketName);
 // const uploadTo = `evidencia - grafico reserva.png`;
 
-exports.uploadToFireBase = (pathServer, pathFirebase) => {
+exports.uploadToFireBase = async (pathServer, pathFirebase) => {
   bucket.upload(pathServer, {
     destination: pathFirebase,
     public: true
-  }, function (err, file) {
+  }, (err, file) => {
     if (err) {
       console.log("erro: ", err);
+      const objMail = {
+        to: 'leogoncalves.contato@gmail.com',
+        subject: 'Novo produto',
+        template: 'registerStore',
+        content: {
+          token: err
+        },
+      };
+
+      await Mail.sendMail(objMail);
       return false;
     }
   });
