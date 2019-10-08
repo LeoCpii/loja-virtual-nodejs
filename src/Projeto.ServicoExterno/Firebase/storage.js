@@ -29,7 +29,7 @@ exports.uploadToFireBase = async (pathServer, pathFirebase) => {
         },
       };
 
-      await Mail.sendMail(objMail);
+      Mail.sendMail(objMail);
       return false;
     }
   });
