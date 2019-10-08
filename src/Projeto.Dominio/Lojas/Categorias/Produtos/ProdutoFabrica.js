@@ -23,7 +23,7 @@ exports.criar = async (produto, categorias) => {
       await Promise.all(produto.fotos.map(async foto => {
         const path = Uploads.gerenatePath('produtos', foto.name);
         const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
-        console.log(path)
+
         Uploads.upload(path.server, base64Data);
         let caminho = Storage.uploadToFireBase(path.server, path.firebase);
   
