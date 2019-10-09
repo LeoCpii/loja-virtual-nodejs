@@ -1,3 +1,4 @@
+const Mail = require('./../services/SendMail.service');
 
 exports.HandlerError =
      class HandlerError {
@@ -71,8 +72,17 @@ exports.internalException = (err) => {
      const errBody = {
           status: 500,
           message: 'Erro interno',
-          description: err.message
+          description: 'Oops, tivemos um problema! Entre em contato ou tente novamente mais tarde'
      }
+
+     const objMail = {
+          to: 'leogoncalves.contato@gmail.com',
+          subject: '***LOG***',
+          template: 'log',
+          content: { error: err },
+     };
+
+     Mail.sendMail(objMail)
 
      return errBody;
 }
@@ -86,7 +96,6 @@ exports.isSuccess = (response) => {
      const statusDeErro = [400, 401, 404, 422, 500];
      let existeStatusErro = false;
      let existeMensagem = false;
-
 
      existeMensagem = response.message ? true : false;
 
@@ -109,7 +118,8 @@ exports.errorStatus = (response) => {
                return this.notFoundException(response.message);
           case 422:
                return this.businessRuleException(response.message);
-          default:
+          default: {
                return this.internalException(response);
+          }
      }
 }

@@ -5,7 +5,8 @@ const Handler = require('./handler.service');
 
 const TEMPLATE = {
     newProduct: 'newProduct.ejs',
-    registerStore: 'registerStore.ejs'
+    registerStore: 'registerStore.ejs',
+    log: 'log.ejs'
 };
 
 const getCredentials = () => {
