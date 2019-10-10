@@ -69,21 +69,27 @@ exports.businessRuleException = (regra) => {
 }
 
 exports.internalException = (err) => {
+
+     const isObject = typeof err === "object";
+
      const errBody = {
           status: 500,
           message: 'Erro interno',
-          description: 'Oops, tivemos um problema! Entre em contato ou tente novamente mais tarde'
+          description: process.env.NODE_ENV !== 'development'
+               ? 'Oops, tivemos um problema! Entre em contato ou tente novamente mais tarde'
+               : isObject ? String(err) : err
      }
 
-     const objMail = {
-          to: 'leogoncalves.contato@gmail.com',
-          subject: '***LOG***',
-          template: 'log',
-          content: { error: err },
-     };
+     if (process.env.NODE_ENV !== 'development') {
+          const objMail = {
+               to: 'leogoncalves.contato@gmail.com',
+               subject: '***LOG***',
+               template: 'log',
+               content: { error: err },
+          };
 
-     Mail.sendMail(objMail)
-
+          Mail.sendMail(objMail)
+     }
      return errBody;
 }
 

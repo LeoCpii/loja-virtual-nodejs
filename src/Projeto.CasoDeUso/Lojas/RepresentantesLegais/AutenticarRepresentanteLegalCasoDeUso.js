@@ -30,7 +30,7 @@ exports.executar = async (req, res, next) => {
         const mensagem = Handler.success('Usuário logado', token);
         return res.status(mensagem.status).send(mensagem);
     } catch (error) {
-        const mensagem = Handler.errorStatus(error)
+        const mensagem = Handler.errorStatus(error);
         return res.status(mensagem.status).send(mensagem);
     }
 }

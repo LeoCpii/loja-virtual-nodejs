@@ -3,7 +3,6 @@ const Handler = require('./../../../shared/services/handler.service');
 
 exports.executar = async (categoria, loja) => {
     try {
-        console.log('especi',loja)
         const newCategoria = await Repositorio.categorias.Fabrica.criar(categoria);
 
         const options = { categorias: [ newCategoria ] }

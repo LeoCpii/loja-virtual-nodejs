@@ -27,9 +27,8 @@ exports.criar = async (loja, endereco, representanteLegal) => {
 }
 
 exports.associar = async (options, slug) => {
-
     const loja = await Dominio.Loja.findOne({ slug: slug });
-    console.log(loja)
+
     const attLoja = await Dominio.Loja.updateOne(
         { _id: loja._id },
         { $addToSet: options },
