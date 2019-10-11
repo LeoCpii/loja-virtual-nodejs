@@ -8,9 +8,9 @@ const Utils = require('./../../../shared/services/Utils.service');
 exports.executar = async (req, res, next) => {
     try {
 
-        const lojaAtual = await Utils.lojaAtual(req.header('x-access-token'));
+        const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
 
-        const categoria = await Especificacao.lojas.categorias.criar.executar(req.body, lojaAtual.loja);
+        const categoria = await Especificacao.lojas.categorias.criar.executar(req.body, usuarioAtual.loja);
         
         const mensagem = Handler.success('Categoria cadastrada com sucesso', categoria);
         return res.status(mensagem.status).send(mensagem);

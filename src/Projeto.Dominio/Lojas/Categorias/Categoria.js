@@ -19,6 +19,10 @@ const CategoriaSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Cor é obrigatória'],
     },
+    loja: {
+        type: String,
+        required: [true, 'Loja é obrigatória'],
+    },
     produtos:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Produto'

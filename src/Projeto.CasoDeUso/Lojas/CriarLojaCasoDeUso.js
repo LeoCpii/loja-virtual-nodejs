@@ -4,8 +4,11 @@
 const Handler = require('./../../shared/services/handler.service');
 const Especificacao = require('./../../Projeto.IoC/InjecoesDependencia/EspecificacaoInjecaoDependencia');
 const Mail = require('./../../shared/services/SendMail.service');
+const Utils = require('./../../shared/services/Utils.service');
+
 exports.executar = async (req, res, next) => {
     try {
+        // const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
         await Especificacao.lojas.criar.executar(req.body);
 
         const objMail = {

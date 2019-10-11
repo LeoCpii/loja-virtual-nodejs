@@ -7,10 +7,10 @@ const Utils = require('./../../../shared/services/Utils.service');
 
 exports.executar = async (req, res, next) => {
   try {
-    const lojaAtual = await Utils.lojaAtual(req.header('x-access-token'));
+    const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
 
     const representante = await Especificacao.lojas.representanteLegal.obterPorEmail.executar(
-      lojaAtual.email
+      usuarioAtual.email
     );
 
     await Especificacao.objetoValor.informacaoPessoal.atualizar.executar(

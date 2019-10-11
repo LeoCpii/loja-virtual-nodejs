@@ -4,6 +4,7 @@ const Slug = require('../../../../shared/services/Slug.service');
 const errorHandling = require('../../../../shared/services/ErrorHandling.service');
 const Dominio = require('./Produto');
 const Storage = require('./../../../../Projeto.ServicoExterno/Firebase/storage');
+const File = require('../../../../shared/services/File.service');
 
 exports.criar = async (produto, categorias) => {
   // 1. validar
@@ -19,34 +20,21 @@ exports.criar = async (produto, categorias) => {
   let promessas = '';
   if (produto.fotos.length > 0) {
     promessas = produto.fotos.map(foto => Storage.uploadToFireBase(foto));
-    await Promise.all(promessas);
+    const caminhos = await Promise.all(promessas);
+    produto.fotos.map(foto => File.exclude(`${foto.name}/`));
+    produto = { ...produto, fotos: caminhos, slug, categorias: categorias };
   }
 
-  console.log(promessas)
-
-
-  // for (const categoria of categorias) {
-  //   await salvarCategoria(categoria, produto.fotos);
-  // }
-
-  // const promessas = categorias.map(cat => salvarCategoria(cat, protudo.fotos));
-  // await Promise.all(promessas);
-
-
-
   // 5. Salvar o produto
-  // const newProduto = await Dominio.Produto.create(produto)
-  //   .catch(e => {
-  //     throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
-  //   });
+  const newProduto = await Dominio.Produto.create(produto)
+    .catch(e => {
+      throw new Handler.HandlerError(400, errorHandling.concatErrors(e.errors));
+    });
 
-  // await newProduto.save();
+  await newProduto.save();
 
-  // pathServer.map(path => {
-  //   Uploads.delete(path)
-  // });
-  return 'estuda ae campeao';
-  // return newProduto.populate('detalhes.valores');
+  // return 'estuda ae campeao';
+  return newProduto.populate('detalhes.valores');
 }
 
 

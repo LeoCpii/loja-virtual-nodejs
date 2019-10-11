@@ -8,9 +8,9 @@ const Utils = require('./../../shared/services/Utils.service');
 exports.executar = async (req, res, next) => {
     try {
 
-        const lojaAtual = await Utils.lojaAtual(req.header('x-access-token'));
+        const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
 
-        const loja = await Especificacao.lojas.obter.executar({ slug: lojaAtual.slug });
+        const loja = await Especificacao.lojas.obter.executar({ slug: usuarioAtual.slug });
 
         await Especificacao.lojas.atualizar.executar(loja[0]._id, req.body);
 

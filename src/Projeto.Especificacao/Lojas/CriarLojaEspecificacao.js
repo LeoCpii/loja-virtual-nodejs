@@ -9,7 +9,7 @@ exports.executar = async (loja) => {
         cnpj: loja.cnpj,
         slug: slug,
         tema: loja.tema
-    }
+    };
 
     // const representanteLegalEndereco = await Repositorio.enderecos.Fabrica.criar(loja.representanteLegal.endereco);
     const InformacaoPessoal = await Repositorio.informacoesPessoais.Fabrica.criar(loja.representanteLegal.informacaoPessoal);
@@ -20,10 +20,11 @@ exports.executar = async (loja) => {
     const dataCategoria = {
         nome: 'Sem categoria',
         descricao: 'Produtos que não possuem categorias',
-        cor: '#34465D'
-    }
+        cor: '#34465D',
+        loja: slug
+    };
 
-    const categoria = await Repositorio.categorias.Fabrica.criar(dataCategoria)
+    const categoria = await Repositorio.categorias.Fabrica.criar(dataCategoria);
 
     const params = { loja: newLoja }
     const options = { categorias: [categoria] }

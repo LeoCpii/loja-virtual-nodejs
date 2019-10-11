@@ -1,5 +1,5 @@
 const fs = require('fs');
-const Mail = require('./../../shared/services/SendMail.service');
+const Mail = require('./SendMail.service');
 
 exports.upload = async (path, file) => {
   fs.writeFileSync(path, file, { encoding: 'base64' },async (err) => {
@@ -35,7 +35,7 @@ exports.gerenatePath = (...args) => {
   return paths;
 };
 
-exports.delete = (path) => {
+exports.exclude = (path) => {
   fs.unlink(path, function(err) {
     if (err) {
       console.error(err)

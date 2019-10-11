@@ -14,7 +14,12 @@ exports.executar = async (email) => {
 
         const representanteLegal = await Repositorio.representantesLegais.Dominio.RepresentanteLegal.findOne({
             informacaoPessoal: informacaoPessoal._id
-        }).populate(['informacaoPessoal', 'endereco', 'loja']);
+        }).populate(['informacaoPessoal', 'endereco', 'loja', {
+            path: 'loja', populate: {
+                path: 'endereco',
+                model: 'Endereco'
+            }
+        },]);
 
         if(Extension.EhNuloOuVazio(representanteLegal)) {
             throw new Handler.HandlerError(404, 'Email não registrado')

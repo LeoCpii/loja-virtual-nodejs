@@ -7,8 +7,8 @@ const Utils = require('./../../../shared/services/Utils.service');
 
 exports.executar = async (req, res, next) => {
     try {
-        const lojaAtual = await Utils.lojaAtual(req.header('x-access-token'));
-        const representate = await Especificacao.lojas.representanteLegal.obterPorEmail.executar(lojaAtual.email);
+        const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
+        const representate = await Especificacao.lojas.representanteLegal.obterPorEmail.executar(usuarioAtual.email);
 
         const mensagem = Handler.success('Representante obtido com sucesso', representate);
         return res.status(mensagem.status).send(mensagem);
