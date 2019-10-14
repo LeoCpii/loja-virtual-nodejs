@@ -1,7 +1,7 @@
 const Repositorio = require('../../../../Projeto.IoC/InjecoesDependencia/RepositorioInjecaoDependencia');
 const Handler = require('./../../../../shared/services/handler.service');
 
-exports.executar = async (req) => {
+exports.executar = async (req, loja) => {
     try {
 
         const categorias = [];
@@ -14,7 +14,7 @@ exports.executar = async (req) => {
             categorias.push(categoria);
         }));
 
-        const newProduto = await Repositorio.produtos.Fabrica.criar(req.produto, categorias);
+        const newProduto = await Repositorio.produtos.Fabrica.criar(req.produto, categorias, loja);
         await Promise.all(req.categorias.map(async categoria => {
             const options = {
                 id: categoria,

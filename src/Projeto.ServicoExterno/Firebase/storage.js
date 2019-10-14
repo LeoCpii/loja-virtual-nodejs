@@ -12,8 +12,8 @@ const storage = new Storage({
 const bucket = storage.bucket(bucketName);
 // const uploadTo = `evidencia - grafico reserva.png`;
 
-exports.uploadToFireBase = async (foto) => {
-  const path = File.gerenatePath('produtos', foto.name);
+exports.uploadToFireBase = async (foto, route) => {
+  const path = File.gerenatePath(...route, foto.name);
   const base64Data = foto.base64.replace(/^data:([A-Za-z-+/]+);base64,/, '');
   File.upload(path.server, base64Data);
   

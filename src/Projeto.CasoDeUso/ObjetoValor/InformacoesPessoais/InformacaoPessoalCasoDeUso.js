@@ -15,7 +15,8 @@ exports.executar = async (req, res, next) => {
 
     await Especificacao.objetoValor.informacaoPessoal.atualizar.executar(
       representante.informacaoPessoal._id,
-      req.body
+      req.body,
+      usuarioAtual.loja
     )
 
     const mensagem = Handler.success('Representante atualizado com sucesso');

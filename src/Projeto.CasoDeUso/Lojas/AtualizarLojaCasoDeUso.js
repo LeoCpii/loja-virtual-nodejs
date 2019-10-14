@@ -10,9 +10,9 @@ exports.executar = async (req, res, next) => {
 
         const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
 
-        const loja = await Especificacao.lojas.obter.executar({ slug: usuarioAtual.slug });
+        const loja = await Especificacao.lojas.obter.executar({ slug: usuarioAtual.loja });
 
-        await Especificacao.lojas.atualizar.executar(loja[0]._id, req.body);
+        await Especificacao.lojas.atualizar.executar(loja[0]._id, req.body, usuarioAtual.loja);
 
         const mensagem = Handler.success('Loja atualizada com sucesso');
         return res.status(mensagem.status).send(mensagem);

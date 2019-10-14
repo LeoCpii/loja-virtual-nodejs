@@ -4,10 +4,12 @@
 const Handler = require('../../../../shared/services/handler.service');
 const Especificacao = require('../../../../Projeto.IoC/InjecoesDependencia/EspecificacaoInjecaoDependencia');
 const Mail = require('./../../../../shared/services/SendMail.service');
+const Utils = require('./../../../../shared/services/Utils.service');
 
 exports.executar = async (req, res, next) => {
     try {
-        const produto = await Especificacao.lojas.categorias.produtos.criar.executar(req.body)
+        const usuarioAtual = await Utils.lojaAtual(req.header('x-access-token'));
+        const produto = await Especificacao.lojas.categorias.produtos.criar.executar(req.body, usuarioAtual.loja)
 
         const objMail = {
             to: 'leogoncalves.contato@gmail.com',

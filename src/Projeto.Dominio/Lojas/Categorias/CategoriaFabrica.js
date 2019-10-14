@@ -7,7 +7,6 @@ const Slug = require('./../../../shared/services/Slug.service');
 
 exports.criar = async (categoria, loja = '') => {
     validar(categoria);
-    console.log(categoria)
     const slug = Slug.criar(categoria.nome);
 
     const jaExiste = await Dominio.findOne({ slug: slug, loja: loja });
